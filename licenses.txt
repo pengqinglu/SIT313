@@ -1,0 +1,9 @@
+Licenses:
+cordova: http://cordova.apache.org/
+Onsen UI: https://onsen.io/
+cordova-plugin-keyboard: https://www.npmjs.com/package/cordova-plugin-keyboard
+cordova-plugin-native-keyboard: https://www.npmjs.com/package/cordova-plugin-native-keyboard
+cordova-plugin-splashscreen: https://www.npmjs.com/package/cordova-plugin-splashscreen
+Picture:
+http://tva2.sinaimg.cn/crop.0.0.1328.1328.180/840984e8jw8f91246o74wj210w10wtbu.jpg
+http://ww4.sinaimg.cn/mw690/840984e8tw1egqwqib0r0j21kw11snh8.jpg

@@ -4,101 +4,115 @@
         <link rel="stylesheet" href="css/onsenui.css">
             <link rel="stylesheet" href="css/onsen-css-components.min.css">
                 <script type="text/javascript" src="js/onsenui.min.js"></script>
+                <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
                 <script type="text/javascript" src="js/index.js"></script>
     </head>
     
     <body>
-        <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
-            <ons-page>
-                <ons-splitter id="appSplitter">
-                    <ons-splitter-side id="sidemenu" page="sidemenu.html" swipeable side="left" collapse="" width="220px"></ons-splitter-side>
-                    <ons-splitter-content>
-                        <ons-page id="tabbar-page">
-                            <ons-toolbar>
-                                <div class="center">Home</div>
-                                <div class="left">
-                                    <ons-toolbar-button onclick="fn.toggleMenu()">
-                                        <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>
-                                    </ons-toolbar-button>
-                                </div>
-                            </ons-toolbar>
-                            <ons-tabbar id="appTabbar" position="auto">
-                                <ons-tab label="Home" icon="ion-home" page="home.html" active></ons-tab>
-                                <ons-tab icon="ion-ios-bell" label="Notifications" badge="3" page="notifications.html"></ons-tab>
-                                <ons-tab icon="ion-plus-circled" page="post.html"></ons-tab>
-                                <ons-tab icon="ion-ios-email-outline" label="Message" badge="2" page="message.html"></ons-tab>
-                                <ons-tab icon="ion-person" label="Me" page="me.html"></ons-tab>
-                            </ons-tabbar>
-                        </ons-page>
-                    </ons-splitter-content>
-                </ons-splitter>
-            </ons-page>
-        </ons-navigator>
+<!--        <ons-navigator id="appNavigator" swipeable swipe-target-width="80px">-->
+<!--            <ons-page>-->
+<!--                <ons-splitter id="appSplitter">-->
+<!--                    <ons-splitter-side id="sidemenu" page="sidemenu.html" swipeable side="left" collapse="" width="220px"></ons-splitter-side>-->
+<!--                    <ons-splitter-content page="tabbar-page.html">-->
+<!--                    </ons-splitter-content>-->
+<!--                </ons-splitter>-->
+<!--            </ons-page>-->
+<!--        </ons-navigator>-->
 <!--=============================================================================================================-->
-        
+
+<!--        forum-->
+        <template id="forum.html">
+            
+        </template>
+<!--=============================================================================================================-->
+
+<!--        tabbar-page-->
+
+        <template id="tabbar-page.html">
+<!--            <ons-page>-->
+<!--                <ons-toolbar>-->
+<!--                    <div class="center">Home</div>-->
+<!--                    <div class="left">-->
+<!--                        <ons-toolbar-button onclick="fn.toggleMenu()">-->
+<!--                            <ons-icon icon="ion-navicon, material:md-menu"></ons-icon>-->
+<!--                        </ons-toolbar-button>-->
+<!--                    </div>-->
+<!--                </ons-toolbar>-->
+<!--                <ons-tabbar id="appTabbar" position="auto">-->
+<!--                    <ons-tab label="Home" icon="ion-home" page="home.html" active></ons-tab>-->
+<!--                    <ons-tab icon="ion-ios-bell" label="Notifications" badge="3" page="notifications.html"></ons-tab>-->
+<!--                    <ons-tab icon="ion-plus-circled" page="post.html"></ons-tab>-->
+<!--                    <ons-tab icon="ion-ios-email-outline" label="Message" badge="2" page="message.html"></ons-tab>-->
+<!--                    <ons-tab icon="ion-person" label="Me" page="me.html"></ons-tab>-->
+<!--                </ons-tabbar>-->
+<!--            </ons-page>-->
+        </template>
+
 <!--        sidemenu-->
         <template id="sidemenu.html">
-            <ons-page>
-                <ons-list>
-                    <p style="text-align: center; margin-top: 10px;">
-                    <ons-search-input placeholder="Search"></ons-search-input>
-                    </p>
-                    <ons-list-item onclick="fn.loadView(0)" tappable>
-                        Home
-                    </ons-list-item>
-                    <ons-list-item onclick="appNavigator.pushPage('settings.html')" tappable>
-                        Settings
-                    </ons-list-item>
-                    <ons-list-item onclick="showDialog('about')" tappable>
-                        About
-                    </ons-list-item>
-                    <ons-list-item onclick="throwException('exception')" tappable>
-                        throw Exception
-                    </ons-list-item>
-                    <ons-list-item onclick="listException('exception')" tappable>
-                        list Exception
-                    </ons-list-item>
-                </ons-list>
-            </ons-page>
+<!--            <ons-page>-->
+<!--                <ons-list>-->
+<!--                    <p style="text-align: center; margin-top: 10px;">-->
+<!--                    <ons-search-input placeholder="Search"></ons-search-input>-->
+<!--                    </p>-->
+<!--                    <ons-list-item onclick="fn.loadView(0)" tappable>-->
+<!--                        Home-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-list-item onclick="appNavigator.pushPage('settings.html')" tappable>-->
+<!--                        Settings-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-list-item onclick="showDialog('about')" tappable>-->
+<!--                        About-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-list-item onclick="throwException('exception')" tappable>-->
+<!--                        throw Exception-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-list-item onclick="listException('exception')" tappable>-->
+<!--                        list Exception-->
+<!--                    </ons-list-item>-->
+<!--                </ons-list>-->
+<!--            </ons-page>-->
         </template>
 <!--=============================================================================================================-->
 
 <!--        home-->
         <template id="home.html">
-            <ons-page>
-                <ons-tabbar position="top">
-                    <ons-tab label="All" page="allposts.html" active>
-                    </ons-tab>
-                    <ons-tab label="Game" page="game.html">
-                    </ons-tab>
-                    <ons-tab label="Music" page="music.html">
-                    </ons-tab>
-                    <ons-tab label="Picture" page="picture.html">
-                    </ons-tab>
-                    <ons-tab label="Irrigation" page="irrigation.html">
-                    </ons-tab>
-                </ons-tabbar>
+<!--            <ons-page>-->
+<!--                <ons-tabbar position="top">-->
+<!--                    <ons-tab label="All" page="allposts.html" active>-->
+<!--                    </ons-tab>-->
+<!--                    <ons-tab label="Game" page="game.html">-->
+<!--                    </ons-tab>-->
+<!--                    <ons-tab label="Music" page="music.html">-->
+<!--                    </ons-tab>-->
+<!--                    <ons-tab label="Picture" page="picture.html">-->
+<!--                    </ons-tab>-->
+<!--                    <ons-tab label="Irrigation" page="irrigation.html">-->
+<!--                    </ons-tab>-->
+<!--                </ons-tabbar>-->
+<!--            </ons-page>-->
+        </template>
 <!--=============================================================================================================-->
                 
 <!--        allposts-->
                 <template id="allposts.html">
-                    <ons-page>
-                        <ons-pull-hook id="pull-hook">
-                            Pull to refresh
-                        </ons-pull-hook>
-                        <ons-list>
-                            <ons-list-item onclick="appNavigator.pushPage('picturepost1.html')" tappable>
-                                [Daily Photo] Sheepers#1
-                            </ons-list-item>
-                            <ons-list-item onclick="appNavigator.pushPage('musicpost1.html')" tappable>
-                                Forforever
-                            </ons-list-item>
-                            <ons-list-item>All Post 3</ons-list-item>
-                            <ons-list-item>All Post 4</ons-list-item>
-                            <ons-list-item>All Post 5</ons-list-item>
-                            <ons-list-item>All Post 6</ons-list-item>
-                        </ons-list>
-                    </ons-page>
+<!--                    <ons-page>-->
+<!--                        <ons-pull-hook id="pull-hook">-->
+<!--                            Pull to refresh-->
+<!--                        </ons-pull-hook>-->
+<!--                        <ons-list>-->
+<!--                            <ons-list-item onclick="appNavigator.pushPage('picturepost1.html')" tappable>-->
+<!--                                [Daily Photo] Sheepers#1-->
+<!--                            </ons-list-item>-->
+<!--                            <ons-list-item onclick="appNavigator.pushPage('musicpost1.html')" tappable>-->
+<!--                                Forforever-->
+<!--                            </ons-list-item>-->
+<!--                            <ons-list-item>All Post 3</ons-list-item>-->
+<!--                            <ons-list-item>All Post 4</ons-list-item>-->
+<!--                            <ons-list-item>All Post 5</ons-list-item>-->
+<!--                            <ons-list-item>All Post 6</ons-list-item>-->
+<!--                        </ons-list>-->
+<!--                    </ons-page>-->
                 </template>
 <!--=============================================================================================================-->
 
@@ -428,143 +442,143 @@
 
 <!--        game-->
                 <template id="game.html">
-                    <ons-page>
-                        <ons-pull-hook id="pull-hook">
-                            Pull to refresh
-                        </ons-pull-hook>
-                        <ons-list>
-                            <ons-list-item>Game Post 1</ons-list-item>
-                            <ons-list-item>Game Post 2</ons-list-item>
-                            <ons-list-item>Game Post 3</ons-list-item>
-                            <ons-list-item>Game Post 4</ons-list-item>
-                            <ons-list-item>Game Post 5</ons-list-item>
-                            <ons-list-item>Game Post 6</ons-list-item>
-                        </ons-list>
-                    </ons-page>
+<!--                    <ons-page>-->
+<!--                        <ons-pull-hook id="pull-hook">-->
+<!--                            Pull to refresh-->
+<!--                        </ons-pull-hook>-->
+<!--                        <ons-list>-->
+<!--                            <ons-list-item>Game Post 1</ons-list-item>-->
+<!--                            <ons-list-item>Game Post 2</ons-list-item>-->
+<!--                            <ons-list-item>Game Post 3</ons-list-item>-->
+<!--                            <ons-list-item>Game Post 4</ons-list-item>-->
+<!--                            <ons-list-item>Game Post 5</ons-list-item>-->
+<!--                            <ons-list-item>Game Post 6</ons-list-item>-->
+<!--                        </ons-list>-->
+<!--                    </ons-page>-->
                 </template>
 <!--=============================================================================================================-->
 
 <!--        music-->
                 <template id="music.html">
-                    <ons-page>
-                        <ons-pull-hook id="pull-hook">
-                            Pull to refresh
-                        </ons-pull-hook>
-                        <ons-list>
-                            <ons-list-item onclick="appNavigator.pushPage('musicpost1.html')" tappable>
-                                Forforever
-                            </ons-list-item>
-                            <ons-list-item>Music Post 2</ons-list-item>
-                            <ons-list-item>Music Post 3</ons-list-item>
-                            <ons-list-item>Music Post 4</ons-list-item>
-                            <ons-list-item>Music Post 5</ons-list-item>
-                            <ons-list-item>Music Post 6</ons-list-item>
-                        </ons-list>
-                    </ons-page>
+<!--                    <ons-page>-->
+<!--                        <ons-pull-hook id="pull-hook">-->
+<!--                            Pull to refresh-->
+<!--                        </ons-pull-hook>-->
+<!--                        <ons-list>-->
+<!--                            <ons-list-item onclick="appNavigator.pushPage('musicpost1.html')" tappable>-->
+<!--                                Forforever-->
+<!--                            </ons-list-item>-->
+<!--                            <ons-list-item>Music Post 2</ons-list-item>-->
+<!--                            <ons-list-item>Music Post 3</ons-list-item>-->
+<!--                            <ons-list-item>Music Post 4</ons-list-item>-->
+<!--                            <ons-list-item>Music Post 5</ons-list-item>-->
+<!--                            <ons-list-item>Music Post 6</ons-list-item>-->
+<!--                        </ons-list>-->
+<!--                    </ons-page>-->
                 </template>
 <!--=============================================================================================================-->
 
 <!--        picture-->
                 <template id="picture.html">
-                    <ons-page>
-                        <ons-pull-hook id="pull-hook">
-                            Pull to refresh
-                        </ons-pull-hook>
-                        <ons-list>
-                            <ons-list-item onclick="appNavigator.pushPage('picturepost1.html')" tappable>
-                                [Daily Photo] Sheepers#1
-                            </ons-list-item>
-                            <ons-list-item>Picture Post 2</ons-list-item>
-                            <ons-list-item>Picture Post 3</ons-list-item>
-                            <ons-list-item>Picture Post 4</ons-list-item>
-                            <ons-list-item>Picture Post 5</ons-list-item>
-                            <ons-list-item>Picture Post 6</ons-list-item>
-                        </ons-list>
-                    </ons-page>
+<!--                    <ons-page>-->
+<!--                        <ons-pull-hook id="pull-hook">-->
+<!--                            Pull to refresh-->
+<!--                        </ons-pull-hook>-->
+<!--                        <ons-list>-->
+<!--                            <ons-list-item onclick="appNavigator.pushPage('picturepost1.html')" tappable>-->
+<!--                                [Daily Photo] Sheepers#1-->
+<!--                            </ons-list-item>-->
+<!--                            <ons-list-item>Picture Post 2</ons-list-item>-->
+<!--                            <ons-list-item>Picture Post 3</ons-list-item>-->
+<!--                            <ons-list-item>Picture Post 4</ons-list-item>-->
+<!--                            <ons-list-item>Picture Post 5</ons-list-item>-->
+<!--                            <ons-list-item>Picture Post 6</ons-list-item>-->
+<!--                        </ons-list>-->
+<!--                    </ons-page>-->
                 </template>
 <!--=============================================================================================================-->
 
 <!--        irrigation-->
                 <template id="irrigation.html">
-                    <ons-page>
-                        <ons-pull-hook id="pull-hook">
-                            Pull to refresh
-                        </ons-pull-hook>
-                        <ons-list>
-                            <ons-list-item>Irrigation Post 1</ons-list-item>
-                            <ons-list-item>Irrigation Post 2</ons-list-item>
-                            <ons-list-item>Irrigation Post 3</ons-list-item>
-                            <ons-list-item>Irrigation Post 4</ons-list-item>
-                            <ons-list-item>Irrigation Post 5</ons-list-item>
-                            <ons-list-item>Irrigation Post 6</ons-list-item>
-                        </ons-list>
-                    </ons-page>
+<!--                    <ons-page>-->
+<!--                        <ons-pull-hook id="pull-hook">-->
+<!--                            Pull to refresh-->
+<!--                        </ons-pull-hook>-->
+<!--                        <ons-list>-->
+<!--                            <ons-list-item>Irrigation Post 1</ons-list-item>-->
+<!--                            <ons-list-item>Irrigation Post 2</ons-list-item>-->
+<!--                            <ons-list-item>Irrigation Post 3</ons-list-item>-->
+<!--                            <ons-list-item>Irrigation Post 4</ons-list-item>-->
+<!--                            <ons-list-item>Irrigation Post 5</ons-list-item>-->
+<!--                            <ons-list-item>Irrigation Post 6</ons-list-item>-->
+<!--                        </ons-list>-->
+<!--                    </ons-page>-->
                 </template>
             
-            </ons-page>
-        </template>
+<!--            </ons-page>-->
+<!--        </template>-->
 <!--=============================================================================================================-->
 
 <!--        settings-->
         <template id="settings.html">
-            <ons-page id="settings">
-                <ons-toolbar>
-                    <div class="left"><ons-back-button>Home</ons-back-button></div>
-                    <div class="center">
-                        Settings
-                    </div>
-                </ons-toolbar>
-                <ons-list>
-                    <ons-list-header>Settings</ons-list-header>
-                    <ons-list-item>
-                        <div class="center">
-                            Night mode
-                        </div>
-                        <div class="right">
-                            <ons-switch></ons-switch>
-                        </div>
-                    </ons-list-item>
-                    <ons-list-item>
-                        <div class="center">
-                            Notifications
-                        </div>
-                        <div class="right">
-                            <ons-switch checked></ons-switch>
-                        </div>
-                    </ons-list-item>
-                </ons-list>
-                <ons-list-item>
-                    Adjust the volume:
-                    <ons-row>
-                        <ons-col width="40px" style="text-align: center; line-height: 31px;">
-                            <ons-icon icon="md-volume-down"></ons-icon>
-                        </ons-col>
-                        <ons-col>
-                            <ons-range id="range-slider" value="25" style="width: 100%;"></ons-range>
-                        </ons-col>
-                        <ons-col width="40px" style="text-align: center; line-height: 31px;">
-                            <ons-icon icon="md-volume-up"></ons-icon>
-                        </ons-col>
-                    </ons-row>
-                    Volume:<span id="volume-value">&nbsp;25</span> <span id="careful-message" style="display: none">&nbsp;(careful, that's loud)</span>
-                </ons-list-item>
-            </ons-page>
+<!--            <ons-page id="settings">-->
+<!--                <ons-toolbar>-->
+<!--                    <div class="left"><ons-back-button>Home</ons-back-button></div>-->
+<!--                    <div class="center">-->
+<!--                        Settings-->
+<!--                    </div>-->
+<!--                </ons-toolbar>-->
+<!--                <ons-list>-->
+<!--                    <ons-list-header>Settings</ons-list-header>-->
+<!--                    <ons-list-item>-->
+<!--                        <div class="center">-->
+<!--                            Night mode-->
+<!--                        </div>-->
+<!--                        <div class="right">-->
+<!--                            <ons-switch></ons-switch>-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-list-item>-->
+<!--                        <div class="center">-->
+<!--                            Notifications-->
+<!--                        </div>-->
+<!--                        <div class="right">-->
+<!--                            <ons-switch checked></ons-switch>-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                </ons-list>-->
+<!--                <ons-list-item>-->
+<!--                    Adjust the volume:-->
+<!--                    <ons-row>-->
+<!--                        <ons-col width="40px" style="text-align: center; line-height: 31px;">-->
+<!--                            <ons-icon icon="md-volume-down"></ons-icon>-->
+<!--                        </ons-col>-->
+<!--                        <ons-col>-->
+<!--                            <ons-range id="range-slider" value="25" style="width: 100%;"></ons-range>-->
+<!--                        </ons-col>-->
+<!--                        <ons-col width="40px" style="text-align: center; line-height: 31px;">-->
+<!--                            <ons-icon icon="md-volume-up"></ons-icon>-->
+<!--                        </ons-col>-->
+<!--                    </ons-row>-->
+<!--                    Volume:<span id="volume-value">&nbsp;25</span> <span id="careful-message" style="display: none">&nbsp;(careful, that's loud)</span>-->
+<!--                </ons-list-item>-->
+<!--            </ons-page>-->
         </template>
 <!--=============================================================================================================-->
         
 <!--        about-->
-        <ons-alert-dialog id="about">
-            <div class="alert-dialog-title">About</div>
-            <div class="alert-dialog-content">
-                SIT313 - Mobile Computing
-                </br>Student Name: Qinglu PENG
-                </br>Student ID: 216036238
-                </br>Email: pengq@deakin.edu.au
-            </div>
-            <div class="alert-dialog-footer">
-                <button class="alert-dialog-button" onclick="hideDialog('about')">OK</button>
-            </div>
-        </ons-alert-dialog>
+<!--        <ons-alert-dialog id="about">-->
+<!--            <div class="alert-dialog-title">About</div>-->
+<!--            <div class="alert-dialog-content">-->
+<!--                SIT313 - Mobile Computing-->
+<!--                </br>Student Name: Qinglu PENG-->
+<!--                </br>Student ID: 216036238-->
+<!--                </br>Email: pengq@deakin.edu.au-->
+<!--            </div>-->
+<!--            <div class="alert-dialog-footer">-->
+<!--                <button class="alert-dialog-button" onclick="hideDialog('about')">OK</button>-->
+<!--            </div>-->
+<!--        </ons-alert-dialog>-->
 <!--=============================================================================================================-->
 
 <!--        exception-->
@@ -579,258 +593,281 @@
 <!--        </ons-alert-dialog>-->
 <!--=============================================================================================================-->
 
-<!--        allnotifications-->
+<!--        notifications-->
         <template id="notifications.html">
-            <ons-page id="notifications-page">
-                <ons-tabbar id="hidden-tabbar" position="top">
-                    <ons-tab page="allnotifications.html" active></ons-tab>
-                    <ons-tab page="mentions.html"></ons-tab>
-                </ons-tabbar>
-                
-                <style type="text/css">
-                    #hidden-tabbar .tabbar__content {
-                        top: 0px;
-                    }
-                
-                #hidden-tabbar .tabbar {
-                    display: none;
-                }
-                
-                .notifs-bar {
-                    height: 45px;
-                }
-                
-                .notifs-bar .button-bar {
-                    height: 27px;
-                    width: 100%;
-                }
-                
-                .notifs-bar.list-item--material .button-bar {
-                    align-items: center;
-                }
-                
-                .notifs-bar ons-button {
-                    font-size: 14px;
-                    line-height: inherit;
-                    text-align: center;
-                    width: 50%;
-                }
-                
-                .notifs-bar ons-button:first-child {
-                    border-radius: 30px 0px 0px 30px;
-                }
-                
-                .notifs-bar ons-button:last-child {
-                    border-radius: 0px 30px 30px 0px;
-                }
-                </style>
-            </ons-page>
+<!--            <ons-page id="notifications-page">-->
+<!--                <ons-tabbar id="hidden-tabbar" position="top">-->
+<!--                    <ons-tab page="allnotifications.html" active></ons-tab>-->
+<!--                    <ons-tab page="mentions.html"></ons-tab>-->
+<!--                </ons-tabbar>-->
+<!--                -->
+<!--                <style type="text/css">-->
+<!--                    #hidden-tabbar .tabbar__content {-->
+<!--                        top: 0px;-->
+<!--                    }-->
+<!--                -->
+<!--                #hidden-tabbar .tabbar {-->
+<!--                    display: none;-->
+<!--                }-->
+<!--                -->
+<!--                .notifs-bar {-->
+<!--                    height: 45px;-->
+<!--                }-->
+<!--                -->
+<!--                .notifs-bar .button-bar {-->
+<!--                    height: 27px;-->
+<!--                    width: 100%;-->
+<!--                }-->
+<!--                -->
+<!--                .notifs-bar.list-item--material .button-bar {-->
+<!--                    align-items: center;-->
+<!--                }-->
+<!--                -->
+<!--                .notifs-bar ons-button {-->
+<!--                    font-size: 14px;-->
+<!--                    line-height: inherit;-->
+<!--                    text-align: center;-->
+<!--                    width: 50%;-->
+<!--                }-->
+<!--                -->
+<!--                .notifs-bar ons-button:first-child {-->
+<!--                    border-radius: 30px 0px 0px 30px;-->
+<!--                }-->
+<!--                -->
+<!--                .notifs-bar ons-button:last-child {-->
+<!--                    border-radius: 0px 30px 30px 0px;-->
+<!--                }-->
+<!--                </style>-->
+<!--            </ons-page>-->
         </template>
 <!--=============================================================================================================-->
         
-<!-- All notifications Page -->
+<!--        All notifications Page -->
         <template id="allnotifications.html">
-            <ons-page id="allnotifications-page">
-                <ons-pull-hook>
-                    <ons-icon size="30px" spin icon="md-spinner"></ons-icon>
-                </ons-pull-hook>
-                
-                <ons-list>
-                    <ons-list-item modifier="longdivider" class="notifs-bar">
-                        <div class="button-bar">
-                            <ons-button id="all-all-button"><b>All</b></ons-button>
-                            <ons-button id="all-mentions-button" modifier="outline" onclick="document.getElementById('hidden-tabbar').setActiveTab(1)"><b>Mentions</b></ons-button>
-                        </div>
-                    </ons-list-item>
-                    
-                    <ons-list-item class="all-notifs" modifier="longdivider">
-                        <div class="left">
-                            <ons-icon icon="ion-ios-chatboxes" size="25px"></ons-icon>
-                        </div>
-                        <div class="center">
-                            <div class="notif-thumbnails">
-                                <img src="img/41501698082_.pic.jpg">
-                                    <img src="img/31501698077_.pic.jpg">
-                                        <ons-button class="option-arrow" modifier="quiet" onclick="document.getElementById('sheet').show()">
-                                            <ons-icon icon="ion-arrow-down-b"></ons-icon>
-                                        </ons-button>
-                                        </div>
-                            <b>Mindy</b>&nbsp;and&nbsp;<b>Linda</b>&nbsp;replied you
-                        </div>
-                    </ons-list-item>
-                    <ons-list-item class="all-notifs" modifier="longdivider">
-                        <div class="left">
-                            <ons-icon icon="ion-heart" size="25px" style="color: red"></ons-icon>
-                        </div>
-                        <div class="center">
-                            <div class="notif-thumbnails">
-                                <img src="img/11501698068_.pic.jpg">
-                                    <ons-button class="option-arrow" modifier="quiet" onclick="document.getElementById('sheet').show()">
-                                        <ons-icon icon="ion-arrow-down-b"></ons-icon>
-                                    </ons-button>
-                                    </div>
-                            <b>sheepers</b>&nbsp;liked your post
-                        </div>
-                    </ons-list-item>
-                </ons-list>
-                
-                <ons-action-sheet id="sheet" cancelable>
-                    <ons-action-sheet-button onclick="document.getElementById('sheet').hide(); ons.notification.toast({message: 'OK. You won\'t see recommendations like this as much.', timeout: 2000})">See less often</ons-action-sheet-button>
-                    <ons-action-sheet-button icon="md-close" onclick="document.getElementById('sheet').hide()">Cancel</ons-action-sheet-button>
-                </ons-action-sheet>
-                
-                <style type="text/css">
-                    #all-page {
-                        font-size: 14px;
-                    }
-                
-                #all-all-button {
-                    background-color: #00aced;
-                }
-                
-                #all-mentions-button {
-                    border-color: #00aced;
-                    color: #00aced;
-                }
-                
-                .all-notifs .left {
-                    align-items: baseline;
-                    width: 25%;
-                }
-                
-                .all-notifs .left.list-item--material__left {
-                    padding: 14px 12px;
-                }
-                
-                .all-notifs .left ons-icon {
-                    color: #00aced;
-                    margin-left: auto;
-                }
-                
-                .all-notifs .center {
-                    width: 100%;
-                }
-                
-                .notif-thumbnails {
-                    width: 100%;
-                }
-                
-                .notif-thumbnails img {
-                    border-radius: 50%;
-                    height: 28px;
-                    width: 28px;
-                }
-                </style>
-            </ons-page>
+<!--            <ons-page id="allnotifications-page">-->
+<!--                <ons-pull-hook>-->
+<!--                    <ons-icon size="30px" spin icon="md-spinner"></ons-icon>-->
+<!--                </ons-pull-hook>-->
+<!--                -->
+<!--                <ons-list>-->
+<!--                    <ons-list-item modifier="longdivider" class="notifs-bar">-->
+<!--                        <div class="button-bar">-->
+<!--                            <ons-button id="all-all-button"><b>All</b></ons-button>-->
+<!--                            <ons-button id="all-mentions-button" modifier="outline" onclick="document.getElementById('hidden-tabbar').setActiveTab(1)"><b>Mentions</b></ons-button>-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                    -->
+<!--                    <ons-list-item class="all-notifs" modifier="longdivider">-->
+<!--                        <div class="left">-->
+<!--                            <ons-icon icon="ion-ios-chatboxes" size="25px"></ons-icon>-->
+<!--                        </div>-->
+<!--                        <div class="center">-->
+<!--                            <div class="notif-thumbnails">-->
+<!--                                <img src="img/41501698082_.pic.jpg">-->
+<!--                                    <img src="img/31501698077_.pic.jpg">-->
+<!--                                        <ons-button class="option-arrow" modifier="quiet" onclick="document.getElementById('sheet').show()">-->
+<!--                                            <ons-icon icon="ion-arrow-down-b"></ons-icon>-->
+<!--                                        </ons-button>-->
+<!--                                        </div>-->
+<!--                            <b>Mindy</b>&nbsp;and&nbsp;<b>Linda</b>&nbsp;replied you-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-list-item class="all-notifs" modifier="longdivider">-->
+<!--                        <div class="left">-->
+<!--                            <ons-icon icon="ion-heart" size="25px" style="color: red"></ons-icon>-->
+<!--                        </div>-->
+<!--                        <div class="center">-->
+<!--                            <div class="notif-thumbnails">-->
+<!--                                <img src="img/11501698068_.pic.jpg">-->
+<!--                                    <ons-button class="option-arrow" modifier="quiet" onclick="document.getElementById('sheet').show()">-->
+<!--                                        <ons-icon icon="ion-arrow-down-b"></ons-icon>-->
+<!--                                    </ons-button>-->
+<!--                                    </div>-->
+<!--                            <b>sheepers</b>&nbsp;liked your post-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                </ons-list>-->
+<!--                -->
+<!--                <ons-action-sheet id="sheet" cancelable>-->
+<!--                    <ons-action-sheet-button onclick="document.getElementById('sheet').hide(); ons.notification.toast({message: 'OK. You won\'t see recommendations like this as much.', timeout: 2000})">See less often</ons-action-sheet-button>-->
+<!--                    <ons-action-sheet-button icon="md-close" onclick="document.getElementById('sheet').hide()">Cancel</ons-action-sheet-button>-->
+<!--                </ons-action-sheet>-->
+<!--                -->
+<!--                <style type="text/css">-->
+<!--                    #all-page {-->
+<!--                        font-size: 14px;-->
+<!--                    }-->
+<!--                -->
+<!--                #all-all-button {-->
+<!--                    background-color: #00aced;-->
+<!--                }-->
+<!--                -->
+<!--                #all-mentions-button {-->
+<!--                    border-color: #00aced;-->
+<!--                    color: #00aced;-->
+<!--                }-->
+<!--                -->
+<!--                .all-notifs .left {-->
+<!--                    align-items: baseline;-->
+<!--                    width: 25%;-->
+<!--                }-->
+<!--                -->
+<!--                .all-notifs .left.list-item--material__left {-->
+<!--                    padding: 14px 12px;-->
+<!--                }-->
+<!--                -->
+<!--                .all-notifs .left ons-icon {-->
+<!--                    color: #00aced;-->
+<!--                    margin-left: auto;-->
+<!--                }-->
+<!--                -->
+<!--                .all-notifs .center {-->
+<!--                    width: 100%;-->
+<!--                }-->
+<!--                -->
+<!--                .notif-thumbnails {-->
+<!--                    width: 100%;-->
+<!--                }-->
+<!--                -->
+<!--                .notif-thumbnails img {-->
+<!--                    border-radius: 50%;-->
+<!--                    height: 28px;-->
+<!--                    width: 28px;-->
+<!--                }-->
+<!--                </style>-->
+<!--            </ons-page>-->
         </template>
 <!--=============================================================================================================-->
         
 <!--        Mentions Page -->
         <template id="mentions.html">
-            <ons-page id="mentions-page">
-                <ons-pull-hook>
-                    <ons-icon size="30px" spin icon="md-spinner"></ons-icon>
-                </ons-pull-hook>
-                
-                <ons-list>
-                    <ons-list-item modifier="longdivider" class="notifs-bar">
-                        <div class="button-bar">
-                            <ons-button id="mentions-all-button" modifier="outline" onclick="document.getElementById('hidden-tabbar').setActiveTab(0)"><b>All</b></ons-button>
-                            <ons-button id="mentions-mentions-button"><b>Mentions</b></ons-button>
-                        </div>
-                    </ons-list-item>
-                </ons-list>
-                
-                <ons-list>
-                    <ons-list-item modifier="longdivider" style="border-top: 1px solid #eee">
-                        <div class="left">
-                            <img class="list-item__thumbnail" src="img/11501698068_.pic.jpg">
-                                </div>
-                        <div class="center">
-                            <div class="tweet-header">
-                                <span class="list-item__title"><b>sheepers</b></span>
-                                <span class="list-item__subtitle">@sheepers&nbsp;&#8231;&nbsp;1 day ago</span>
-                                <ons-button class="option-arrow" modifier="quiet" onclick="ons.openActionSheet({
-                                    cancelable: true,
-                                    buttons: [
-                                    'Share Tweet via...',
-                                    'Add to Moment',
-                                    'Unfollow @cKitty',
-                                    'Mute @cKitty',
-                                    'Mute this conversation',
-                                    'Block @cKitty',
-                                    'Report Tweet',
-                                    {
-                                    label: 'Cancel',
-                                    icon: 'md-close'
-                                    }
-                                    ]
-                                    })">
-                                    <ons-icon icon="ion-arrow-down-b"></ons-icon>
-                                </ons-button>
-                            </div>
-                            <span class="list-item__content">Happy new years&nbsp;<span style="color: #00aced">@Charlotte</span></span>
-                            <ons-row class="option-buttons">
-                                <ons-col>
-                                    <ons-button modifier="quiet">
-                                        <ons-icon icon="ion-ios-chatboxes"></ons-icon><span class="reaction-no">1</span>
-                                    </ons-button>
-                                </ons-col>
-                                <ons-col>
-                                    <ons-button modifier="quiet">
-                                        <ons-icon icon="ion-heart"></ons-icon><span class="reaction-no">5</span>
-                                    </ons-button>
-                                </ons-col>
-                                <ons-col>
-                                    <ons-button modifier="quiet">
-                                        <ons-icon icon="ion-ios-email-outline"></ons-icon>
-                                    </ons-button>
-                                </ons-col>
-                            </ons-row>
-                        </div>
-                    </ons-list-item>
-                    <ons-if platform="ios other">
-                        <div style="text-align: center; margin-bottom: 10px">
-                            <ons-icon size="30px" spin icon="md-spinner"></ons-icon>
-                        </div>
-                    </ons-if>
-                    
-                    <ons-if platform="android">
-                        <div style="text-align: center; margin-bottom: 45px">&#8231;</div>
-                    </ons-if>
-                </ons-list>
-                
-                <style type="text/css">
-                    #mentions-page {
-                        font-size: 14px;
-                    }
-                
-                #mentions-all-button {
-                    border-color: #00aced;
-                    color: #00aced;
-                }
-                
-                #mentions-mentions-button {
-                    background-color: #00aced;
-                }
-                </style>
-            </ons-page>
+<!--            <ons-page id="mentions-page">-->
+<!--                <ons-pull-hook>-->
+<!--                    <ons-icon size="30px" spin icon="md-spinner"></ons-icon>-->
+<!--                </ons-pull-hook>-->
+<!--                -->
+<!--                <ons-list>-->
+<!--                    <ons-list-item modifier="longdivider" class="notifs-bar">-->
+<!--                        <div class="button-bar">-->
+<!--                            <ons-button id="mentions-all-button" modifier="outline" onclick="document.getElementById('hidden-tabbar').setActiveTab(0)"><b>All</b></ons-button>-->
+<!--                            <ons-button id="mentions-mentions-button"><b>Mentions</b></ons-button>-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                </ons-list>-->
+<!--                -->
+<!--                <ons-list>-->
+<!--                    <ons-list-item modifier="longdivider" style="border-top: 1px solid #eee">-->
+<!--                        <div class="left">-->
+<!--                            <img class="list-item__thumbnail" src="img/11501698068_.pic.jpg">-->
+<!--                                </div>-->
+<!--                        <div class="center">-->
+<!--                            <div class="tweet-header">-->
+<!--                                <span class="list-item__title"><b>sheepers</b></span>-->
+<!--                                <span class="list-item__subtitle">@sheepers&nbsp;&#8231;&nbsp;1 day ago</span>-->
+<!--                                <ons-button class="option-arrow" modifier="quiet" onclick="ons.openActionSheet({-->
+<!--                                    cancelable: true,-->
+<!--                                    buttons: [-->
+<!--                                    'Share Tweet via...',-->
+<!--                                    'Add to Moment',-->
+<!--                                    'Unfollow @cKitty',-->
+<!--                                    'Mute @cKitty',-->
+<!--                                    'Mute this conversation',-->
+<!--                                    'Block @cKitty',-->
+<!--                                    'Report Tweet',-->
+<!--                                    {-->
+<!--                                    label: 'Cancel',-->
+<!--                                    icon: 'md-close'-->
+<!--                                    }-->
+<!--                                    ]-->
+<!--                                    })">-->
+<!--                                    <ons-icon icon="ion-arrow-down-b"></ons-icon>-->
+<!--                                </ons-button>-->
+<!--                            </div>-->
+<!--                            <span class="list-item__content">Happy new years&nbsp;<span style="color: #00aced">@Charlotte</span></span>-->
+<!--                            <ons-row class="option-buttons">-->
+<!--                                <ons-col>-->
+<!--                                    <ons-button modifier="quiet">-->
+<!--                                        <ons-icon icon="ion-ios-chatboxes"></ons-icon><span class="reaction-no">1</span>-->
+<!--                                    </ons-button>-->
+<!--                                </ons-col>-->
+<!--                                <ons-col>-->
+<!--                                    <ons-button modifier="quiet">-->
+<!--                                        <ons-icon icon="ion-heart"></ons-icon><span class="reaction-no">5</span>-->
+<!--                                    </ons-button>-->
+<!--                                </ons-col>-->
+<!--                                <ons-col>-->
+<!--                                    <ons-button modifier="quiet">-->
+<!--                                        <ons-icon icon="ion-ios-email-outline"></ons-icon>-->
+<!--                                    </ons-button>-->
+<!--                                </ons-col>-->
+<!--                            </ons-row>-->
+<!--                        </div>-->
+<!--                    </ons-list-item>-->
+<!--                    <ons-if platform="ios other">-->
+<!--                        <div style="text-align: center; margin-bottom: 10px">-->
+<!--                            <ons-icon size="30px" spin icon="md-spinner"></ons-icon>-->
+<!--                        </div>-->
+<!--                    </ons-if>-->
+<!--                    -->
+<!--                    <ons-if platform="android">-->
+<!--                        <div style="text-align: center; margin-bottom: 45px">&#8231;</div>-->
+<!--                    </ons-if>-->
+<!--                </ons-list>-->
+<!--                -->
+<!--                <style type="text/css">-->
+<!--                    #mentions-page {-->
+<!--                        font-size: 14px;-->
+<!--                    }-->
+<!--                -->
+<!--                #mentions-all-button {-->
+<!--                    border-color: #00aced;-->
+<!--                    color: #00aced;-->
+<!--                }-->
+<!--                -->
+<!--                #mentions-mentions-button {-->
+<!--                    background-color: #00aced;-->
+<!--                }-->
+<!--                </style>-->
+<!--            </ons-page>-->
         </template>
 <!--=============================================================================================================-->
 
 <!--        post-->
         <template id="post.html">
             <ons-page>
-                <ons-tabbar position="top">
-                <p style="text-align: center;">
-                Post your posts
+                <form name="form1" method="post" action="">
+                    <center><h2><strong>New Post </strong></h2></center>
+                <p>
+                    <center>
+                        <label for="textarea">Title:</label>
+                        <textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea>
+                        <label for="select">Classify:</label>
+                        <select name="select" required id="newpostclassify">
+                            <option selected>Game</option>
+                            <option>Music</option>
+                            <option>Picture</option>
+                            <option>Irrigation</option>
+                        </select>
+                    </center>
+                </p>
+                <p>
+                    <center>
+                        <label for="textarea2">Content:</label>
+                        <textarea name="textarea2" id="newpostcontent" cols="45" rows="5"></textarea>
+                    </center>
+                </p>
+                <div  align="right">
+                    <input type="reset" name="reset" id="newpostreset" value="reset">
+                    <input type="submit" name="submit" id="newpostsubmit" value="submit" onclick="newpost_submit()">
+                </div>
+                </form>
             </ons-page>
         </template>
 <!--=============================================================================================================-->
 
 <!--        message-->
         <template id="message.html">
-            <ons-page>
+ <!--            <ons-page>
                 <ons-pull-hook id="pull-hook">
                     Pull to refresh
                 </ons-pull-hook>
@@ -860,13 +897,13 @@
                         </div>
                     </ons-list-item>
                 </ons-list>
-            </ons-page>
+            </ons-page> -->
         </template>
 <!--=============================================================================================================-->
 
 <!--        me-->
         <template id="me.html">
-            <ons-page>
+<!--             <ons-page>
                 <ons-toolbar>
                     <div class="center">Login</div>
                 </ons-toolbar>
@@ -886,28 +923,53 @@
                     </ons-button>
                     </p>
                 </div>
-            </ons-page>
+            </ons-page> -->
         </template>
 <!--=============================================================================================================-->
         
 <!--        register-->
         <template id="register.html">
-            <ons-page>
+<!--             <ons-page>
                 <ons-toolbar>
                     <div class="left"><ons-back-button>Login</ons-back-button></div>
                     <div class="center">
                         Register
                     </div>
                 </ons-toolbar>
-                <p style="text-align: center;">
-                This is the register page
-            </ons-page>
+                <form name="form1" method="post" action="">
+                <p>
+                    <center>
+                     <label for="email">Email:</label>
+                     <input type="email" name="email" id="newemail">
+                    </center>
+                </p>
+                <p>
+                   <center>
+                    <label for="textarea">Username:</label>
+                    <textarea name="textarea" id="newusername" cols="20" rows="1"></textarea>
+                   </center>
+                </p>
+                <p>
+                    <center>
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="newpassword">
+                    </center>
+                </p>
+                <p>
+                    <center>
+                        <input type="reset" name="reset" id="reset" value="reset">
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="submit" id="submit" value="submit" onclick="newregister_submit()">
+                    </center>
+                </p>
+                </form>
+            </ons-page> -->
         </template>
 <!--=============================================================================================================-->
 
 <!--        profile-->
         <template id="profile.html">
-            <ons-page id="profile">
+<!--             <ons-page id="profile">
                 <div class="left"><ons-back-button>Back</ons-back-button></div>
                 <div style="text-align: center">
                     <img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg">
@@ -942,8 +1004,7 @@
                 <ons-list-item modifier="nodivider" tappable>
                     Help
                 </ons-list-item>
-                
-            </ons-page>
+            </ons-page> -->
         </template>
 <!--=============================================================================================================-->
 
