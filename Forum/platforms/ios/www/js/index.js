@@ -1,4 +1,5 @@
 var currentuser="";
+currentuser = window.localStorage.getItem("currentusername");
 
 window.fn = {};
 
@@ -50,15 +51,15 @@ var hideDialog = function (id) {
 };
 
 //throw Exception
-var throwException = function() {
-    try{
-        throw new Error("test error");
-    }
-    catch(error)
-    {
-        alert(error);
-    }
-}
+//var throwException = function() {
+//    try{
+//        throw new Error("test error");
+//    }
+//    catch(error)
+//    {
+//        alert(error);
+//    }
+//}
 
 //监听native.keyboardshow 键盘弹出事件
 //var isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //判断是iOS
@@ -77,7 +78,7 @@ var throwException = function() {
 //
 
 
-//================================================================================================
+//=============================================================================================================
 
 $(document).ready(function()
 {
@@ -95,33 +96,37 @@ $(document).ready(function()
     $("body").append(navigator);
                   
     var forum ='<ons-page><ons-splitter id="appSplitter"><ons-splitter-side id="sidemenu" page="sidemenu.html" swipeable side="left" collapse="" width="220px"></ons-splitter-side><ons-splitter-content page="tabbar-page.html"></ons-splitter-content></ons-splitter></ons-page>';
-     document.getElementById('forum.html').innerHTML = forum;
+    document.getElementById('forum.html').innerHTML = forum;
                                              
-    var tabbar_page = '<ons-page><ons-toolbar><div class="center">Home</div><div class="left"><ons-toolbar-button onclick="fn.toggleMenu()"><ons-icon icon="ion-navicon, material:md-menu"></ons-icon></ons-toolbar-button></div></ons-toolbar><ons-tabbar id="appTabbar" position="auto"><ons-tab label="Home" icon="ion-home" page="home.html" active></ons-tab><ons-tab icon="ion-ios-bell" label="Notifications" badge="3" page="notifications.html"></ons-tab><ons-tab icon="ion-plus-circled" page="post.html"></ons-tab><ons-tab icon="ion-ios-email-outline" label="Message" badge="2" page="message.html"></ons-tab><ons-tab icon="ion-person" label="Me" page="me.html"></ons-tab></ons-tabbar></ons-page>';
+    var tabbar_page = '<ons-page><ons-toolbar><div class="center">The first forum</div><div class="left"><ons-toolbar-button onclick="fn.toggleMenu()"><ons-icon icon="ion-navicon, material:md-menu"></ons-icon></ons-toolbar-button></div></ons-toolbar><ons-tabbar id="appTabbar" position="auto"><ons-tab label="Home" icon="ion-home" page="home.html" active></ons-tab><ons-tab icon="ion-ios-bell" label="Notifications" badge="3" page="notifications.html"></ons-tab><ons-tab icon="ion-ios-email-outline" label="Message" badge="2" page="message.html"></ons-tab><ons-tab icon="ion-person" label="Me" page="me.html"></ons-tab></ons-tab><ons-tab></ons-tab></ons-tabbar><ons-fab position="bottom right" onclick = "addnewpost()"><ons-icon icon="md-plus"></ons-icon></ons-fab></ons-page>';
     document.getElementById('tabbar-page.html').innerHTML = tabbar_page;
-                  
-    me();
     
-    var sidemenu = '<ons-page><ons-list><p style="text-align: center; margin-top: 10px;"><ons-search-input placeholder="Search"></ons-search-input></p><ons-list-item onclick="fn.loadView(0)" tappable>Home</ons-list-item><ons-list-item onclick="appNavigator.pushPage(' + "'settings.html'" + ')" tappable>Settings</ons-list-item><ons-list-item onclick="showDialog(' + "'about'" + ')" tappable>About</ons-list-item><ons-list-item onclick="throwException(' + "'exception'" + ')" tappable>throw Exception</ons-list-item><ons-list-item onclick="listException(' + "'exception'" + ')" tappable>list Exception</ons-list-item></ons-list></ons-page>';
+    var sidemenu = '<ons-page><ons-list><p style="text-align: center; margin-top: 10px;"><ons-search-input placeholder="Search"></ons-search-input></p><ons-list-item onclick="fn.loadView(0)" tappable>Home</ons-list-item><ons-list-item onclick="appNavigator.pushPage(' + "'settings.html'" + ')" tappable>Settings</ons-list-item><ons-list-item onclick="showDialog(' + "'about'" + ')" tappable>About</ons-list-item></ons-list></ons-page>';
     document.getElementById('sidemenu.html').innerHTML = sidemenu;
       
     var home = '<ons-page><ons-tabbar position="top"><ons-tab label="All" page="allposts.html" active></ons-tab><ons-tab label="Game" page="game.html"></ons-tab><ons-tab label="Music" page="music.html"></ons-tab><ons-tab label="Picture" page="picture.html"></ons-tab><ons-tab label="Irrigation" page="irrigation.html"></ons-tab></ons-tabbar><ons-alert-dialog id="about"><div class="alert-dialog-title">About</div><div class="alert-dialog-content">SIT313 - Mobile Computing</br>Student Name: Qinglu PENG</br>Student ID: 216036238</br>Email: pengq@deakin.edu.au</div><div class="alert-dialog-footer"><button class="alert-dialog-button" onclick="hideDialog(' + "'about'" + ')">OK</button></div></ons-alert-dialog></ons-page>';
     document.getElementById('home.html').innerHTML = home;
     
-    var allposts = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item onclick="appNavigator.pushPage(' + "'picturepost1.html'" + ')" tappable>[Daily Photo] Sheepers#1</ons-list-item><ons-list-item onclick="appNavigator.pushPage(' + "'musicpost1.html'" + ')" tappable>Forforever</ons-list-item><ons-list-item>All Post 3</ons-list-item><ons-list-item>All Post 4</ons-list-item><ons-list-item>All Post 5</ons-list-item><ons-list-item>All Post 6</ons-list-item></ons-list></ons-page>';
-    document.getElementById('allposts.html').innerHTML = allposts;
-    
-    var game = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item>Game Post 1</ons-list-item><ons-list-item>Game Post 2</ons-list-item><ons-list-item>Game Post 3</ons-list-item><ons-list-item>Game Post 4</ons-list-item><ons-list-item>Game Post 5</ons-list-item><ons-list-item>Game Post 6</ons-list-item></ons-list></ons-page>';
-    document.getElementById('game.html').innerHTML = game;
-    
-    var music = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item onclick="appNavigator.pushPage(' + "'musicpost1.html'" + ')" tappable>Forforever</ons-list-item><ons-list-item>Music Post 2</ons-list-item><ons-list-item>Music Post 3</ons-list-item><ons-list-item>Music Post 4</ons-list-item><ons-list-item>Music Post 5</ons-list-item><ons-list-item>Music Post 6</ons-list-item></ons-list></ons-page>';
-    document.getElementById('music.html').innerHTML = music;
+    displayallposts();
+    displaygameposts();
+    displaymusicposts();
+    displaypictureposts();
+    displayirrigationposts();
                   
-    var picture = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item onclick="appNavigator.pushPage(' + "'picturepost1.html'" + ')" tappable>[Daily Photo] Sheepers#1</ons-list-item><ons-list-item>Picture Post 2</ons-list-item><ons-list-item>Picture Post 3</ons-list-item><ons-list-item>Picture Post 4</ons-list-item><ons-list-item>Picture Post 5</ons-list-item><ons-list-item>Picture Post 6</ons-list-item></ons-list></ons-page>';
-    document.getElementById('picture.html').innerHTML = music;
-                  
-    var irrigation = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item>Irrigation Post 1</ons-list-item><ons-list-item>Irrigation Post 2</ons-list-item><ons-list-item>Irrigation Post 3</ons-list-item><ons-list-item>Irrigation Post 4</ons-list-item><ons-list-item>Irrigation Post 5</ons-list-item><ons-list-item>Irrigation Post 6</ons-list-item></ons-list></ons-page>';
-    document.getElementById('irrigation.html').innerHTML = irrigation;
+//    var allposts = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item onclick="appNavigator.pushPage(' + "'picturepost1.html'" + ')" tappable>[Daily Photo] Sheepers#1</ons-list-item><ons-list-item onclick="appNavigator.pushPage(' + "'musicpost1.html'" + ')" tappable>Forforever</ons-list-item><ons-list-item>All Post 3</ons-list-item><ons-list-item>All Post 4</ons-list-item><ons-list-item>All Post 5</ons-list-item><ons-list-item>All Post 6</ons-list-item></ons-list></ons-page>';
+//    document.getElementById('allposts.html').innerHTML = allposts;
+    
+//    var game = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item>Game Post 1</ons-list-item><ons-list-item>Game Post 2</ons-list-item><ons-list-item>Game Post 3</ons-list-item><ons-list-item>Game Post 4</ons-list-item><ons-list-item>Game Post 5</ons-list-item><ons-list-item>Game Post 6</ons-list-item></ons-list></ons-page>';
+//    document.getElementById('game.html').innerHTML = game;
+//    
+//    var music = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item onclick="appNavigator.pushPage(' + "'musicpost1.html'" + ')" tappable>Forforever</ons-list-item><ons-list-item>Music Post 2</ons-list-item><ons-list-item>Music Post 3</ons-list-item><ons-list-item>Music Post 4</ons-list-item><ons-list-item>Music Post 5</ons-list-item><ons-list-item>Music Post 6</ons-list-item></ons-list></ons-page>';
+//    document.getElementById('music.html').innerHTML = music;
+//                  
+//    var picture = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item onclick="appNavigator.pushPage(' + "'picturepost1.html'" + ')" tappable>[Daily Photo] Sheepers#1</ons-list-item><ons-list-item>Picture Post 2</ons-list-item><ons-list-item>Picture Post 3</ons-list-item><ons-list-item>Picture Post 4</ons-list-item><ons-list-item>Picture Post 5</ons-list-item><ons-list-item>Picture Post 6</ons-list-item></ons-list></ons-page>';
+//    document.getElementById('picture.html').innerHTML = picture;
+//
+//    var irrigation = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item>Irrigation Post 1</ons-list-item><ons-list-item>Irrigation Post 2</ons-list-item><ons-list-item>Irrigation Post 3</ons-list-item><ons-list-item>Irrigation Post 4</ons-list-item><ons-list-item>Irrigation Post 5</ons-list-item><ons-list-item>Irrigation Post 6</ons-list-item></ons-list></ons-page>';
+//    document.getElementById('irrigation.html').innerHTML = irrigation;
                  
     var settings = '<ons-page id="settings"><ons-toolbar><div class="left"><ons-back-button>Home</ons-back-button></div><div class="center">Settings</div></ons-toolbar><ons-list><ons-list-header>Settings</ons-list-header><ons-list-item><div class="center">Night mode</div><div class="right"><ons-switch></ons-switch></div></ons-list-item><ons-list-item><div class="center">Notifications</div><div class="right"><ons-switch checked></ons-switch></div></ons-list-item></ons-list><ons-list-item>Adjust the volume:<ons-row><ons-col width="40px" style="text-align: center; line-height: 31px;"><ons-icon icon="md-volume-down"></ons-icon></ons-col><ons-col><ons-range id="range-slider" value="25" style="width: 100%;"></ons-range></ons-col><ons-col width="40px" style="text-align: center; line-height: 31px;"><ons-icon icon="md-volume-up"></ons-icon></ons-col></ons-row>Volume:<span id="volume-value">&nbsp;25</span> <span id="careful-message" style="display: none">&nbsp;(careful, that&apos;s loud)</span></ons-list-item></ons-page>';
      document.getElementById('settings.html').innerHTML = settings;
@@ -134,17 +139,19 @@ $(document).ready(function()
                   
     var mentions = '<ons-page id="mentions-page"><ons-pull-hook><ons-icon size="30px" spin icon="md-spinner"></ons-icon></ons-pull-hook><ons-list><ons-list-item modifier="longdivider" class="notifs-bar"><div class="button-bar"><ons-button id="mentions-all-button" modifier="outline" onclick="document.getElementById(' + "'hidden-tabbar'" + ').setActiveTab(0)"><b>All</b></ons-button><ons-button id="mentions-mentions-button"><b>Mentions</b></ons-button></div></ons-list-item></ons-list><ons-list><ons-list-item modifier="longdivider" style="border-top: 1px solid #eee"><div class="left"><img class="list-item__thumbnail" src="img/11501698068_.pic.jpg"></div><div class="center"><div class="tweet-header"><span class="list-item__title"><b>sheepers</b></span><span class="list-item__subtitle">@sheepers&nbsp;&#8231;&nbsp;1 day ago</span><ons-button class="option-arrow" modifier="quiet" onclick="ons.openActionSheet({cancelable: true,buttons: [' + "'Share Tweet via...'" + ',' + "'Add to Moment'" + ',' + "'Unfollow @cKitty'" + ',' + "'Mute @cKitty'" + ',' + "'Mute this conversation'" + ',' + "'Block @cKitty'" + ',' + "'Report Tweet'" + ',{label: ' + "'Cancel'" + ',icon: ' + "'md-close'" + '}]})"><ons-icon icon="ion-arrow-down-b"></ons-icon></ons-button></div><span class="list-item__content">Happy new years&nbsp;<span style="color: #00aced">@Charlotte</span></span><ons-row class="option-buttons"><ons-col><ons-button modifier="quiet"><ons-icon icon="ion-ios-chatboxes"></ons-icon><span class="reaction-no">1</span></ons-button></ons-col><ons-col><ons-button modifier="quiet"><ons-icon icon="ion-heart"></ons-icon><span class="reaction-no">5</span></ons-button></ons-col><ons-col><ons-button modifier="quiet"><ons-icon icon="ion-ios-email-outline"></ons-icon></ons-button></ons-col></ons-row></div></ons-list-item><ons-if platform="ios other"><div style="text-align: center; margin-bottom: 10px"><ons-icon size="30px" spin icon="md-spinner"></ons-icon></div></ons-if><ons-if platform="android"><div style="text-align: center; margin-bottom: 45px">&#8231;</div></ons-if></ons-list><style type="text/css">#mentions-page {font-size: 14px;}#mentions-all-button {border-color: #00aced;color: #00aced;}#mentions-mentions-button {background-color: #00aced;}</style></ons-page>';
      document.getElementById('mentions.html').innerHTML = mentions;
+                
+//    var post = '<ons-page><form name="form1" method="post" action=""><center><h2><strong>New Post</strong></h2></center><p><center><label for="textarea">Title:</label><textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="newpostclassify"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><center><label for="textarea2">Content:</label><textarea name="textarea2" id="newpostcontent" cols="45" rows="5"></textarea></center></p><p style="margin-top: 30px;"><center><ons-button onclick="newpost_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newpost_submit()">Submit</ons-button></center></p></form></ons-page>';
+//    document.getElementById('post.html').innerHTML = post;
                   
-//    var post = '<ons-page><form name="form1" method="post" action=""><center><h2><strong>New Post </strong></h2></center><p><center><label for="textarea">Title:</label><textarea name="textarea" id="textarea" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="select"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><center><label for="textarea2">Content:</label><textarea name="textarea2" id="textarea2" cols="45" rows="5"></textarea></center></p><p  align="right"><input type="reset" name="reset" id="reset" value="reset"><input type="submit" name="submit" id="submit" value="submit"></p></form></ons-page>';
-//     document.getElementById('post.html').innerHTML = post;
-
     var message = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list><ons-list-item class="all-notifs" modifier="longdivider"><div class="left"></div><div class="center"><div class="notif-thumbnails"><img src="img/11501698068_.pic.jpg"><b>@ sheepers</b>&nbsp;</div>Do you have time tomorrow afternoon?</div></ons-list-item></ons-list><ons-list><ons-list-item class="all-notifs" modifier="longdivider"><div class="left"></div><div class="center"><div class="notif-thumbnails"><img src="img/31501698077_.pic.jpg"><b>@ Linda</b>&nbsp;</div>Shall we go to Coles together on Saturday?</div></ons-list-item></ons-list></ons-page>';
     document.getElementById('message.html').innerHTML = message;
                   
 //    var me = '<ons-page><ons-toolbar><div class="center">Login</div></ons-toolbar><div style="text-align: center; margin-top: 30px;"><p><ons-input id="username" modifier="underbar" placeholder="Username" float></ons-input></p><p><ons-input id="password" modifier="underbar" type="password" placeholder="Password" float></ons-input></p><p style="margin-top: 30px;"><ons-button onclick="login()">Login</ons-button></p><p style="margin-top: 30px;"><ons-button onclick="appNavigator.pushPage(' + "'register.html'" + ')">Register</ons-button></p></div></ons-page>';
 //    document.getElementById('me.html').innerHTML = me;
+
+    me();
                   
-    var register = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Login</ons-back-button></div><div class="center">Register</div></ons-toolbar><form name="form2" method="post" action=""><p><center><label for="textarea">Username:</label><textarea name="textarea" id="newusername" cols="20" rows="1"></textarea></center></p><p><center><label for="password">Password:</label><input type="password" name="password" id="newpassword"></center></p><p><center><input type="reset" name="reset" id="newuserreset" value="reset">&nbsp;&nbsp;&nbsp;<input type="submit" name="submit" id="newusersubmit" value="submit" onclick="newregister_submit()"></center></p></form></ons-page>';
+    var register = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Login</ons-back-button></div><div class="center">Register</div></ons-toolbar><div style="text-align: center; margin-top: 30px;"><p><ons-input id="newusername" modifier="underbar" placeholder="Username" float></ons-input></p><p><ons-input id="newpassword" modifier="underbar" type="password" placeholder="Password" float></ons-input></p><p style="margin-top: 30px;"><center><ons-button onclick="newregister_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newregister_submit()">Submit</ons-button></center></p></div></ons-page>';
     document.getElementById('register.html').innerHTML = register;
                   
 //    var profile = '<ons-page id="profile"><div class="left"><ons-back-button>Back</ons-back-button></div><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>Charlotte</b> !</div></br></br><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">Profile</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable>Help</ons-list-item></ons-page>';
@@ -152,32 +159,49 @@ $(document).ready(function()
 
 });
 
-function post_submit()
+function newregister_reset()
 {
-    var newposttitle = document.getElementById('newposttitle').value;
-    var newpostclassify = document.getElementById('newpostclassify').value;
-    var newpostcontent = document.getElementById('newpostcontent').value;
-    var post = '[{"title":"' + newposttitle + '","classify":"' + newpostclassify + '","content":"' + newpostcontent + '"}]';
+    document.getElementById("newusername").value="";
+    document.getElementById("newpassword").value="";
 }
 
 function newregister_submit()
 {
     var newusername = document.getElementById('newusername').value;
-    var newpassword = document.getElementById('newpassword').value;
+    var newpassword = sha256_digest(document.getElementById('newpassword').value);
+    
     var user = '[{"username":"'+ newusername +'","password":"' + newpassword + '"}]';
+    
     var loadreturnvalue = new XMLHttpRequest();
     loadreturnvalue.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + newusername), false);
     loadreturnvalue.send(null);
-    if (loadreturnvalue.responseText != "Bad Request: objectid doesn't exist.")
+    
+    if (newusername == "")
     {
-        ons.notification.alert('The username has been registered!');
+        ons.notification.alert('Please input the username!');
     }
     else
     {
-        var createuser = new XMLHttpRequest();
-        createuser.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + newusername + "&data=" + user), false);
-        createuser.send(null);
-        ons.notification.alert('User created successfully');
+        if (newpassword == "")
+        {
+            ons.notification.alert('Please input the password!');
+        }
+        else
+        {
+            if (loadreturnvalue.responseText != "Bad Request: objectid doesn't exist.")
+            {
+                ons.notification.alert('The username has been registered!');
+                newregister_reset();
+            }
+            else
+            {
+                var createuser = new XMLHttpRequest();
+                createuser.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + newusername + "&data=" + user), false);
+                createuser.send(null);
+                ons.notification.alert({message:'User created successfully!'});
+                document.querySelector('#appNavigator').popPage();
+            }
+        }
     }
 }
 
@@ -190,37 +214,850 @@ function me()
     }
     else
     {
-        loginpage = '<ons-page id="profile"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>Charlotte</b> !</div></br></br><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">Profile</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable>Help</ons-list-item></ons-page>';
-        
+        loginpage = '<ons-page id="profile"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>Charlotte</b> !</div></br></br><ons-list-item modifier="nodivider" tappable onclick="myposts()"><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">My posts</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable onclick="logout()">Logout</ons-list-item></ons-page>';
     }
     
     document.getElementById('me.html').innerHTML = loginpage;
-    
 }
 
 function login()
 {
     var login_username = document.getElementById('username').value;
-    var login_password = document.getElementById('password').value;
+    var login_password = sha256_digest(document.getElementById('password').value);
     
     var load_loginuser = new XMLHttpRequest();
     load_loginuser.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + login_username), false);
     load_loginuser.send(null);
     
-    var login_username_info = eval('(' + load_loginuser.responseText + ')');
-    
-    if (login_username_info[0].password == login_password)
+    if (login_username == "")
     {
-        currentuser = login_username;
-        
-        ons.notification.alert('Login successful!');
-        
-        currentuser_info = '<ons-page id="currentuser_info"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>' + currentuser + '</b> !</div></br></br><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">Profile</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable>Help</ons-list-item></ons-page>';
-        document.querySelector('#appNavigator').pushPage('forum.html');
+        ons.notification.alert('Please input the username!');
     }
     else
     {
-        ons.notification.alert('Incorrect username or password.');
+        if (login_password == "")
+        {
+            ons.notification.alert('Please input the password!');
+        }
+        else
+        {
+            if (load_loginuser.responseText == "Bad Request: objectid doesn't exist.")
+            {
+                ons.notification.alert('Username does not exist!');
+                login_reset();
+            }
+            else
+            {
+                var login_username_info = eval('(' + load_loginuser.responseText + ')');
+                
+                if (login_username_info[0].password == login_password)
+                {
+                    currentuser = login_username;
+                    
+                    ons.notification.alert('Login successful!');
+                    
+                    document.querySelector('#appNavigator').pushPage('forum.html');
+                    currentuser_info = '<ons-page id="currentuser_info"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>' + currentuser + '</b> !</div></br></br><ons-list-item modifier="nodivider" tappable onclick="myposts()"><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">My posts</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable onclick="logout()">Logout</ons-list-item></ons-page>';
+                }
+                else
+                {
+                    ons.notification.alert('Incorrect password!');
+                    login_reset();
+                }
+            }
+        }
     }
     document.getElementById('me.html').innerHTML = currentuser_info;
+}
+
+function login_reset()
+{
+    document.getElementById("username").value="";
+    document.getElementById("password").value="";
+}
+
+function logout()
+{
+    currentuser = "";
+    
+    window.localStorage.setItem("currentusername", "");
+
+    document.querySelector('#appNavigator').popPage();
+    ons.notification.alert('Logout successful!');
+    window.location.reload();
+}
+
+function newpost_reset()
+{
+    document.getElementById("newposttitle").value="";
+    document.getElementById("newpostclassify").value="Game";
+    document.getElementById("newpostcontent").value="";
+}
+
+function addnewpost()
+{
+    if (currentuser != "")
+    {
+        var addnewpost = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Post</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Post</strong></h2></center><p><center><label for="textarea">Title:</label><textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="newpostclassify"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><center><label for="textarea2">Content:</label><textarea name="textarea2" id="newpostcontent" cols="45" rows="5"></textarea></center></p><p style="margin-top: 30px;"><center><ons-button onclick="newpost_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newpost_submit()">Submit</ons-button></center></p></form></ons-page>';
+        
+        
+//        <div class="postcontent" id="new_content" contenteditable="true" placeholder="Write a post."></div>
+        
+//        var addnewpost = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Post</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Post</strong></h2></center><p><center><label for="textarea">Title:</label><textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="newpostclassify"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><div class="content"><div class="container-fluid"><div id=' + "'pad-wrapper'" + '><div id="editparent"><div id=' + "'editControls'" + ' class=' + "'span12'" + ' style=' + "'text-align:center; padding:5px;'" + '><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'undo'" + ' href=' + "'#'" + '><i class=' + "'icon-undo'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'redo'" + ' href=' + "'#'" + '><i class=' + "'icon-repeat'" + '></i></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'bold'" + ' href=' + "'#'" + '><b>Bold</b></a><a class=' + "'btn'" + ' data-role=' + "'italic'" + ' href=' + "'#'" + '><em>Italic</em></a><a class=' + "'btn'" + ' data-role=' + "'underline'" + ' href=' + "'#'" + '><u><b>U</b></u></a><a class=' + "'btn'" + ' data-role=' + "'strikeThrough'" + ' href=' + "'#'" + '><strike>abc</strike></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'justifyLeft'" + ' href=' + "'#'" + '><i class=' + "'icon-align-left'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'justifyCenter'" + ' href=' + "'#'" + '><i class=' + "'icon-align-center'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'justifyRight'" + ' href=' + "'#'" + '><i class=' + "'icon-align-right'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'justifyFull'" + ' href=' + "'#'" + '><i class=' + "'icon-align-justify'" + '></i></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'indent'" + ' href='" + '#'" + '><i class=' + "'icon-indent-right'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'outdent'" + ' href=' + "'#'" + '><i class=' + "'icon-indent-left'" + '></i></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'insertUnorderedList'" + ' href=' + "'#'" + '><i class=' + "'icon-list-ul'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'insertOrderedList'" + ' href=' + "'#'" + '><i class=' + "'icon-list-ol'" + '></i></a></div><div class=' + "btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'h1'" + ' href=' + "'#'" + '>h<sup>1</sup></a><a class=' + "'btn'" + ' data-role=' + "'h2'" + ' href=' + "'#'" + '>h<sup>2</sup></a><a class=' + "'btn'" + ' data-role=' + "'p'" + ' href=' + "'#'" + '>p</a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'subscript'" + ' href=' + "'#'" + '><i class=' + "'icon-subscript'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'superscript'" + ' href=' + "'#'" + '><i class=' + "'icon-superscript'" + '></i></a></div></div><div id=' + "'editor'" + ' class=' + "'span12'" + ' style=' + "''" + ' contenteditable><h1>This is a title!</h1><p>This is just some example text to start us off</p></div></div></div></div></div></form></ons-page>';
+        
+        
+        document.getElementById('addnewpost.html').innerHTML = addnewpost;
+        document.querySelector('#appNavigator').pushPage('addnewpost.html');
+    }
+    else
+    {
+        ons.notification.alert('Please log in first');
+    }
+}
+
+function newpost_submit()
+{
+    var newposttitle = document.getElementById('newposttitle').value;
+    var newpostclassify = document.getElementById('newpostclassify').value;
+    var newpostcontent = document.getElementById('newpostcontent').value;
+    var newposttime = currenttime();
+    var newpostauthor = currentuser;
+    
+    window.localStorage.setItem("currentusername", currentuser);
+    
+    var newpost = '[{"newpostauthor":"' + newpostauthor + '","newposttime":"' + newposttime + '","newpostclassify":"' + newpostclassify + '","newposttitle":"' + newposttitle + '","newpostcontent":"' + newpostcontent + '", "postreply":[{"replyuser":"","replycontent":"","replytime":""}]}]';
+    
+    var save_newpost = new XMLHttpRequest();
+    save_newpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + newpostauthor + "_" + newposttime + "_" + newpostclassify + "&data=" + newpost), false);
+    save_newpost.send(null);
+    
+    var retrieveallposts = new XMLHttpRequest();
+    retrieveallposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    retrieveallposts.send(null);
+    
+    if (retrieveallposts.responseText == "Bad Request: objectid doesn't exist.")
+    {
+        var saveallpost = new XMLHttpRequest();
+        saveallpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=allposts&data=[]"), false);
+        saveallpost.send(null);
+    }
+    
+    var allposts = '{"newpostauthor":"' + newpostauthor + '","newposttime":"' + newposttime + '","newpostclassify":"' + newpostclassify + '"}';
+    
+    var appendallposts = new XMLHttpRequest();
+    appendallposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=append&appid=216036238&objectid=allposts&data=" + allposts), false);
+    appendallposts.send(null);
+    
+    ons.notification.alert('Post successful!');
+    
+    document.querySelector('#appNavigator').popPage();
+    
+    location.reload();
+    
+}
+
+function currenttime()
+{
+    var myDate = new Date();
+    
+    var year = myDate.getFullYear().toString();
+    
+    var month = myDate.getMonth() + 1;
+    if (month < 10)
+    {
+        month = ("0" + month).toString();
+    }
+    else
+    {
+        month = month.toString();
+    }
+    
+    var date = myDate.getDate();
+    if (date < 10)
+    {
+        date = ("0" + date).toString();
+    }
+    else
+    {
+        date = date.toString();
+    }
+    
+
+    var hour = myDate.getHours();
+    if (hour < 10)
+    {
+        hour = ("0" + hour).toString();
+    }
+    else
+    {
+        hour = hour.toString();
+    }
+    
+    var minute = myDate.getMinutes();
+    if (minute < 10)
+    {
+        minute = ("0" + minute).toString();
+    }
+    else
+    {
+        minute = minute.toString();
+    }
+    
+    var second = myDate.getSeconds();
+    if (second < 10)
+    {
+        second = ("0" + second).toString();
+    }
+    else
+    {
+        second = second.toString();
+    }
+    
+    var currenttime = year + month + date + hour + minute + second;
+    return currenttime;
+}
+
+function displayallposts()
+{
+    var list_allposts = new XMLHttpRequest();
+    list_allposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    list_allposts.send(null);
+    
+    if (list_allposts.responseText != "Bad Request: objectid doesn't exist.")
+    {
+        var allposts_info = eval('(' + list_allposts.responseText + ')');
+        
+        var displaypostlist = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list>';
+        
+        for (var i=0; i<allposts_info.length; i++)
+        {
+            var postauthor = allposts_info[i].newpostauthor;
+            var posttime = allposts_info[i].newposttime;
+            var postclassify = allposts_info[i].newpostclassify;
+            
+            var getpost = new XMLHttpRequest();
+            getpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+            getpost.send(null);
+            
+            var post_info = eval('(' + getpost.responseText + ')');
+            
+            var arr = posttime.split("");
+            
+            var year = "";
+            var month = "";
+            var day = "";
+            var hour = "";
+            var minute = "";
+            var second = "";
+            
+            for (var a=0; a<=3; a++)
+            {
+                year += arr[a];
+            }
+            
+            for (var b=4; b<=5; b++)
+            {
+                month += arr[b];
+            }
+            
+            for (var c=6; c<=7; c++)
+            {
+                day += arr[c];
+            }
+            
+            for (var d=8; d<=9; d++)
+            {
+                hour += arr[d];
+            }
+            
+            for (var e=10; e<=11; e++)
+            {
+                minute += arr[e];
+            }
+            
+            for (var f=12; f<=13; f++)
+            {
+                second += arr[f];
+            }
+            
+            var date1 = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+            
+            displaypostlist += '<ons-list-item onclick="postpage(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')" modifier="chevron" tappable>' + post_info[0].newposttitle + '&nbsp&nbsp[Post time:' + date1 + ']</ons-list-item>';
+        }
+        
+        displaypostlist += '</ons-list></ons-page>';
+        
+        document.getElementById('allposts.html').innerHTML = displaypostlist;
+    }
+}
+
+function displaygameposts()
+{
+    var list_allposts = new XMLHttpRequest();
+    list_allposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    list_allposts.send(null);
+    
+    if (list_allposts.responseText != "Bad Request: objectid doesn't exist.")
+    {
+        var allposts_info = eval('(' + list_allposts.responseText + ')');
+
+        var displaygamepostlist = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list>';
+        
+        for (var i=0; i<allposts_info.length; i++)
+        {
+            var postauthor = allposts_info[i].newpostauthor;
+            var posttime = allposts_info[i].newposttime;
+            var postclassify = allposts_info[i].newpostclassify;
+            
+            if (postclassify == 'Game')
+            {
+                var getgamepost = new XMLHttpRequest();
+                getgamepost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+                getgamepost.send(null);
+                
+                var gamepost_info = eval('(' + getgamepost.responseText + ')');
+                
+                var arr = posttime.split("");
+                
+                var year = "";
+                var month = "";
+                var day = "";
+                var hour = "";
+                var minute = "";
+                var second = "";
+                
+                for (var a=0; a<=3; a++)
+                {
+                    year += arr[a];
+                }
+                
+                for (var b=4; b<=5; b++)
+                {
+                    month += arr[b];
+                }
+                
+                for (var c=6; c<=7; c++)
+                {
+                    day += arr[c];
+                }
+                
+                for (var d=8; d<=9; d++)
+                {
+                    hour += arr[d];
+                }
+                
+                for (var e=10; e<=11; e++)
+                {
+                    minute += arr[e];
+                }
+                
+                for (var f=12; f<=13; f++)
+                {
+                    second += arr[f];
+                }
+                
+                var date1 = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                
+                displaygamepostlist += '<ons-list-item onclick="postpage(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')" modifier="chevron" tappable>' + gamepost_info[0].newposttitle + '&nbsp&nbsp[Post time:' + date1 + ']</ons-list-item>';
+            }
+            
+        }
+        
+        displaygamepostlist += '</ons-list></ons-page>';
+        
+        document.getElementById('game.html').innerHTML = displaygamepostlist;
+    }
+}
+
+function displaymusicposts()
+{
+    var list_allposts = new XMLHttpRequest();
+    list_allposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    list_allposts.send(null);
+    
+    if (list_allposts.responseText != "Bad Request: objectid doesn't exist.")
+    {
+        var allposts_info = eval('(' + list_allposts.responseText + ')');
+        
+        var displaymusicpostlist = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list>';
+        
+        for (var i=0; i<allposts_info.length; i++)
+        {
+            var postauthor = allposts_info[i].newpostauthor;
+            var posttime = allposts_info[i].newposttime;
+            var postclassify = allposts_info[i].newpostclassify;
+            
+            if (postclassify == 'Music')
+            {
+                var getmusicpost = new XMLHttpRequest();
+                getmusicpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+                getmusicpost.send(null);
+                
+                var musicpost_info = eval('(' + getmusicpost.responseText + ')');
+                
+                var arr = posttime.split("");
+                
+                var year = "";
+                var month = "";
+                var day = "";
+                var hour = "";
+                var minute = "";
+                var second = "";
+                
+                for (var a=0; a<=3; a++)
+                {
+                    year += arr[a];
+                }
+                
+                for (var b=4; b<=5; b++)
+                {
+                    month += arr[b];
+                }
+                
+                for (var c=6; c<=7; c++)
+                {
+                    day += arr[c];
+                }
+                
+                for (var d=8; d<=9; d++)
+                {
+                    hour += arr[d];
+                }
+                
+                for (var e=10; e<=11; e++)
+                {
+                    minute += arr[e];
+                }
+                
+                for (var f=12; f<=13; f++)
+                {
+                    second += arr[f];
+                }
+                
+                var date1 = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                
+                displaymusicpostlist += '<ons-list-item onclick="postpage(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')" modifier="chevron" tappable>' + musicpost_info[0].newposttitle + '&nbsp&nbsp[Post time:' + date1 + ']</ons-list-item>';
+            }
+            
+        }
+        
+        displaymusicpostlist += '</ons-list></ons-page>';
+        
+        document.getElementById('music.html').innerHTML = displaymusicpostlist;
+    }
+}
+
+function displaypictureposts()
+{
+    var list_allposts = new XMLHttpRequest();
+    list_allposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    list_allposts.send(null);
+    
+    if (list_allposts.responseText != "Bad Request: objectid doesn't exist.")
+    {
+        var allposts_info = eval('(' + list_allposts.responseText + ')');
+        
+        var displaypicturepostlist = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list>';
+        
+        for (var i=0; i<allposts_info.length; i++)
+        {
+            var postauthor = allposts_info[i].newpostauthor;
+            var posttime = allposts_info[i].newposttime;
+            var postclassify = allposts_info[i].newpostclassify;
+            
+            if (postclassify == 'Picture')
+            {
+                var getpicturepost = new XMLHttpRequest();
+                getpicturepost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+                getpicturepost.send(null);
+                
+                var picturepost_info = eval('(' + getpicturepost.responseText + ')');
+                
+                var arr = posttime.split("");
+                
+                var year = "";
+                var month = "";
+                var day = "";
+                var hour = "";
+                var minute = "";
+                var second = "";
+                
+                for (var a=0; a<=3; a++)
+                {
+                    year += arr[a];
+                }
+                
+                for (var b=4; b<=5; b++)
+                {
+                    month += arr[b];
+                }
+                
+                for (var c=6; c<=7; c++)
+                {
+                    day += arr[c];
+                }
+                
+                for (var d=8; d<=9; d++)
+                {
+                    hour += arr[d];
+                }
+                
+                for (var e=10; e<=11; e++)
+                {
+                    minute += arr[e];
+                }
+                
+                for (var f=12; f<=13; f++)
+                {
+                    second += arr[f];
+                }
+                
+                var date1 = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                
+                displaypicturepostlist += '<ons-list-item onclick="postpage(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')" modifier="chevron" tappable>' + picturepost_info[0].newposttitle + '&nbsp&nbsp[Post time:' + date1 + ']</ons-list-item>';
+            }
+            
+        }
+        
+        displaypicturepostlist += '</ons-list></ons-page>';
+        
+        document.getElementById('picture.html').innerHTML = displaypicturepostlist;
+    }
+}
+
+function displayirrigationposts()
+{
+    var list_allposts = new XMLHttpRequest();
+    list_allposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    list_allposts.send(null);
+    
+    if (list_allposts.responseText != "Bad Request: objectid doesn't exist.")
+    {
+        var allposts_info = eval('(' + list_allposts.responseText + ')');
+        
+        var displayirrigationpostlist = '<ons-page><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list>';
+        
+        for (var i=0; i<allposts_info.length; i++)
+        {
+            var postauthor = allposts_info[i].newpostauthor;
+            var posttime = allposts_info[i].newposttime;
+            var postclassify = allposts_info[i].newpostclassify;
+            
+            if (postclassify == 'Irrigation')
+            {
+                var getirrigationpost = new XMLHttpRequest();
+                getirrigationpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+                getirrigationpost.send(null);
+                
+                var irrigationpost_info = eval('(' + getirrigationpost.responseText + ')');
+                
+                var arr = posttime.split("");
+                
+                var year = "";
+                var month = "";
+                var day = "";
+                var hour = "";
+                var minute = "";
+                var second = "";
+                
+                for (var a=0; a<=3; a++)
+                {
+                    year += arr[a];
+                }
+                
+                for (var b=4; b<=5; b++)
+                {
+                    month += arr[b];
+                }
+                
+                for (var c=6; c<=7; c++)
+                {
+                    day += arr[c];
+                }
+                
+                for (var d=8; d<=9; d++)
+                {
+                    hour += arr[d];
+                }
+                
+                for (var e=10; e<=11; e++)
+                {
+                    minute += arr[e];
+                }
+                
+                for (var f=12; f<=13; f++)
+                {
+                    second += arr[f];
+                }
+                
+                var date1 = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+                
+                displayirrigationpostlist += '<ons-list-item onclick="postpage(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')" modifier="chevron" tappable>' + irrigationpost_info[0].newposttitle + '&nbsp&nbsp[Post time:' + date1 + ']</ons-list-item>';
+            }
+            
+        }
+        
+        displayirrigationpostlist += '</ons-list></ons-page>';
+        
+        document.getElementById('irrigation.html').innerHTML = displayirrigationpostlist;
+    }
+}
+
+
+function postpage(postauthor, posttime, postclassify)
+{
+    var arr = posttime.split("");
+    
+    var year = "";
+    var month = "";
+    var day = "";
+    var hour = "";
+    var minute = "";
+    var second = "";
+    
+    for (var a=0; a<=3; a++)
+    {
+        year += arr[a];
+    }
+    
+    for (var b=4; b<=5; b++)
+    {
+        month += arr[b];
+    }
+    
+    for (var c=6; c<=7; c++)
+    {
+        day += arr[c];
+    }
+    
+    for (var d=8; d<=9; d++)
+    {
+        hour += arr[d];
+    }
+    
+    for (var e=10; e<=11; e++)
+    {
+        minute += arr[e];
+    }
+    
+    for (var f=12; f<=13; f++)
+    {
+        second += arr[f];
+    }
+    
+    var date1 = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+    var date2 = new Date();
+    var date3 = date2.getTime() - new Date(date1).getTime();
+    
+    //计算出相差天数
+    var days = Math.floor(date3/(24*3600*1000));
+    
+    //计算出小时数
+    var leave1 = date3%(24*3600*1000);    //计算天数后剩余的毫秒数
+    var hours = Math.floor(leave1/(3600*1000));
+    
+    //计算相差分钟数
+    var leave2 = leave1%(3600*1000);        //计算小时数后剩余的毫秒数
+    var minutes = Math.floor(leave2/(60*1000));
+    
+    //计算相差秒数
+    var leave3 = leave2%(60*1000);      //计算分钟数后剩余的毫秒数
+    var seconds = Math.round(leave3/1000);
+    
+    var timedifference;
+    
+    if (days != 0)
+    {
+        timedifference = days + " Days " + hours + " Hours " + minutes + " Minutes AGO";
+    }
+    else
+    {
+        if (hours != 0)
+        {
+            timedifference = hours + " Hours " + minutes + " Minutes AGO";
+        }
+        else
+        {
+            timedifference = minutes + " Minutes AGO";
+        }
+    }
+    
+    var displaypost = new XMLHttpRequest();
+    displaypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+    displaypost.send(null);
+    
+    var displaypost_info = eval('(' + displaypost.responseText + ')');
+    
+    var postpage = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">' + displaypost_info[0].newposttitle + '</div></ons-toolbar><ons-card class="post"><ons-list-item class="post_title"><div class="center"><div class="list-item__title"><b>' + postauthor + '</b></div></div></ons-list-item><div style="text-align: center; position: relative">' + displaypost_info[0].newpostcontent + '</div><ons-list-item class="post-button-bar" modifier="nodivider"><div class="center" style="padding-top: 0px"><ons-button class="post-button" modifier="quiet" onclick="like"><ons-icon id="button-post-like" icon="ion-ios-heart-outline"></ons-icon></ons-button><ons-button class="post-button" modifier="quiet"><ons-icon icon="ion-ios-chatbubble-outline" onclick="addnewreply(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')""></ons-icon></ons-button><ons-button class="post-button" modifier="quiet" onclick="deletepost(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')"><ons-icon icon="ion-ios-trash-outline"></ons-icon></ons-button></div></ons-list-item><div class="post-time" style="text-align: right; position: relative;">' + timedifference + '</div></ons-card>';
+    
+    for (var i=1; i<displaypost_info[0].postreply.length; i++)
+    {
+        postpage = postpage + '<ons-card class="post"><ons-list-item class="post_title"><div class="center"><div class="list-item__title"><b>' + displaypost_info[0].postreply[i].replyuser + '</b></div></div></ons-list-item><div style="text-align: center; position: relative">' + displaypost_info[0].postreply[i].replycontent + '</div><ons-list-item class="post-button-bar" modifier="nodivider"><div class="center" style="padding-top: 0px"></div></ons-list-item><div class="post-time" style="text-align: right; position: relative;">' + displaypost_info[0].postreply[i].replytime + '</div></ons-card>';
+    }
+    
+    postpage = postpage + '</ons-page>';
+    
+    document.querySelector('#appNavigator').pushPage('postpage.html');
+    document.getElementById('postpage.html').innerHTML = postpage;
+}
+
+function myposts()
+{
+    var list_allposts = new XMLHttpRequest();
+    list_allposts.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=allposts"), false);
+    list_allposts.send(null);
+    
+    if (list_allposts.responseText != "Bad Request: objectid doesn't exist.")
+    {
+        var allposts_info = eval('(' + list_allposts.responseText + ')');
+        
+        var displaymypostslist = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">My posts</div></ons-toolbar><ons-pull-hook id="pull-hook">Pull to refresh</ons-pull-hook><ons-list>';
+        
+        for (var i=0; i<allposts_info.length; i++)
+        {
+            var postauthor = allposts_info[i].newpostauthor;
+            var posttime = allposts_info[i].newposttime;
+            var postclassify = allposts_info[i].newpostclassify;
+            
+            if (postauthor == currentuser)
+            {
+                var getmypost = new XMLHttpRequest();
+                getmypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+                getmypost.send(null);
+                
+                var myposts_info = eval('(' + getmypost.responseText + ')');
+                
+                var arr = posttime.split("");
+                
+                var year = "";
+                var month = "";
+                var day = "";
+                var hour = "";
+                var minute = "";
+                var second = "";
+                
+                for (var a=0; a<=3; a++)
+                {
+                    year += arr[a];
+                }
+                
+                for (var b=4; b<=5; b++)
+                {
+                    month += arr[b];
+                }
+                
+                for (var c=6; c<=7; c++)
+                {
+                    day += arr[c];
+                }
+                
+                for (var d=8; d<=9; d++)
+                {
+                    hour += arr[d];
+                }
+                
+                for (var e=10; e<=11; e++)
+                {
+                    minute += arr[e];
+                }
+                
+                for (var f=12; f<=13; f++)
+                {
+                    second += arr[f];
+                }
+                
+                var date1 = year + "-" + month + "- " + day + " " + hour + ":" + minute + ":" + second;
+                
+                displaymypostslist += '<ons-list-item onclick="postpage(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')" modifier="chevron" tappable>' + myposts_info[0].newposttitle + '&nbsp&nbsp[Post time:' + date1 + ']</ons-list-item>';
+            }
+            
+        }
+        
+        displaymypostslist += '</ons-list></ons-page>';
+        
+        document.querySelector('#appNavigator').pushPage('myposts.html');
+        document.getElementById('myposts.html').innerHTML = displaymypostslist;
+    }
+    else
+    {
+        ons.notification.alert('You have not sent any posts yet');
+    }
+}
+
+function addnewreply(postauthor, posttime, postclassify)
+{
+    if (currentuser == "")
+    {
+        ons.notification.alert('Please log in first');
+    }
+    else
+    {
+        var addnewreply = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Reply</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Reply</strong></h2></center><p><center><label for="textarea">Content:</label><textarea name="textarea" id="newreplycontent" cols="45" rows="5"></textarea></center></p><p style="margin-top: 30px;"><center><ons-button onclick="newreply_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newreply_submit(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')")">Submit</ons-button></center></p></form></ons-page>';
+        
+        document.getElementById('addnewreply.html').innerHTML = addnewreply;
+        document.querySelector('#appNavigator').pushPage('addnewreply.html');
+    }
+}
+
+function newreply_reset()
+{
+    document.getElementById("newreplycontent").value="";
+}
+
+function newreply_submit(postauthor, posttime, postclassify)
+{
+    var displaypost = new XMLHttpRequest();
+    displaypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+    displaypost.send(null);
+    
+    var displaypost_info = eval('(' + displaypost.responseText + ')');
+    
+    var postallreply = "";
+    
+    for (var i=0; i<displaypost_info[0].postreply.length; i++)
+    {
+        var allreplyuser = displaypost_info[0].postreply[i].replyuser;
+        var allreplycontent = displaypost_info[0].postreply[i].replycontent;
+        var allreplytime = displaypost_info[0].postreply[i].replytime;
+        
+        postallreply += '{"replyuser":"' + allreplyuser + '","replycontent":"' + allreplycontent + '","replytime":"' + allreplytime + '"},';
+    }
+    
+    var newreplyuser = currentuser;
+    var newreplycontent = document.getElementById('newreplycontent').value;
+    var newreplytime = new Date();
+    
+    postallreply = postallreply + '{"replyuser":"' + newreplyuser + '","replycontent":"' + newreplycontent + '","replytime":"' + newreplytime + '"}';
+    
+    var postdetails = '[{"newpostauthor":"' + displaypost_info[0].newpostauthor + '","newposttime":"' + displaypost_info[0].newposttime + '","newpostclassify":"' + displaypost_info[0].newpostclassify + '","newposttitle":"' + displaypost_info[0].newposttitle + '","newpostcontent":"' + displaypost_info[0].newpostcontent + '", "postreply":[' + postallreply + ']}]';
+    
+    var savenewreply = new XMLHttpRequest();
+    savenewreply.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify + "&data=" + postdetails), false);
+    savenewreply.send(null);
+    
+    ons.notification.alert('Reply successful!');
+    
+    document.querySelector('#appNavigator').popPage();
+}
+
+function deletepost(postauthor, posttime, postclassify)
+{
+//    if (currentuser == postauthor)
+//    {
+//        var deletepost = new XMLHttpRequest();
+//        displaypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=delete&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+//        displaypost.send(null);
+//        
+//        if (deletepost.responseText != "ok")
+//        {
+//            ons.notification.alert('Delete successful!');
+//            
+//            document.querySelector('#appNavigator').popPage();
+//        }
+//    }
+//    else
+//    {
+//        ons.notification.alert('You do not have permission to delete this post');
+//    }
+    
 }
