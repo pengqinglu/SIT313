@@ -1,4 +1,5 @@
 var currentuser="";
+//var newpostcontent="";
 currentuser = window.localStorage.getItem("currentusername");
 
 window.fn = {};
@@ -214,7 +215,7 @@ function me()
     }
     else
     {
-        loginpage = '<ons-page id="profile"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>Charlotte</b> !</div></br></br><ons-list-item modifier="nodivider" tappable onclick="myposts()"><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">My posts</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable onclick="logout()">Logout</ons-list-item></ons-page>';
+        loginpage = '<ons-page id="profile"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>' + currentuser + '</b> !</div></br></br><ons-list-item modifier="nodivider" tappable onclick="myposts()"><div class="left"><ons-icon icon="ion-ios-list-outline"></ons-icon></div><div class="center">My posts</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable onclick="changeperinfo()"><div class="left"><ons-icon icon="ion-ios-person"></ons-icon></div><div class="center">Profile</div></ons-list-item><ons-list-item modifier="nodivider" tappable onclick="logout()">Logout</ons-list-item></ons-page>';
     }
     
     document.getElementById('me.html').innerHTML = loginpage;
@@ -257,7 +258,7 @@ function login()
                     ons.notification.alert('Login successful!');
                     
                     document.querySelector('#appNavigator').pushPage('forum.html');
-                    currentuser_info = '<ons-page id="currentuser_info"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>' + currentuser + '</b> !</div></br></br><ons-list-item modifier="nodivider" tappable onclick="myposts()"><div class="left"><ons-icon icon="ion-person"></ons-icon></div><div class="center">My posts</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable><div class="left"><ons-icon icon="ion-ios-box"></ons-icon></div><div class="center">Draft Box</div></ons-list-item><ons-list-item modifier="nodivider" tappable onclick="logout()">Logout</ons-list-item></ons-page>';
+                    currentuser_info = '<ons-page id="currentuser_info"><div style="text-align: center"><img style="height: 160px; width: 120px" class="profile-thumbnail" src="img/101501779827_.pic.jpg"></div><div style="text-align: center">Welcome <b>' + currentuser + '</b> !</div></br></br><ons-list-item modifier="nodivider" tappable onclick="myposts()"><div class="left"><ons-icon icon="ion-ios-list-outline"></ons-icon></div><div class="center">My posts</div></ons-list-item><ons-list-item modifier="nodivider" tappable><div class="left"><ons-icon icon="ion-thumbsup"></ons-icon></div><div class="center">Likes</div></ons-list-item><ons-list-item modifier="longdivider" tappable onclick="changeperinfo()"><div class="left"><ons-icon icon="ion-ios-person"></ons-icon></div><div class="center">Profile</div></ons-list-item><ons-list-item modifier="nodivider" tappable onclick="logout()">Logout</ons-list-item></ons-page>';
                 }
                 else
                 {
@@ -298,10 +299,41 @@ function addnewpost()
 {
     if (currentuser != "")
     {
-        var addnewpost = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Post</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Post</strong></h2></center><p><center><label for="textarea">Title:</label><textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="newpostclassify"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><center><label for="textarea2">Content:</label><textarea name="textarea2" id="newpostcontent" cols="45" rows="5"></textarea></center></p><p style="margin-top: 30px;"><center><ons-button onclick="newpost_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newpost_submit()">Submit</ons-button></center></p></form></ons-page>';
+        var addnewpost = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Post</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Post</strong></h2></center><p><label for="textarea">Title:</label><textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="newpostclassify"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><label for="textarea">Content:</label><textarea name="textarea" id="newpostcontent"></textarea></p><p style="margin-top: 30px;"><center><ons-button onclick="newpost_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newpost_submit()">Submit</ons-button></p></form></ons-page>';
         
+//        <p><div id="toolbar"></div><div id="editor" input="text"></div></p>
         
-//        <div class="postcontent" id="new_content" contenteditable="true" placeholder="Write a post."></div>
+//        var toolbarOptions = [
+//                              ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+//                              ['blockquote', 'code-block'],
+//                              
+//                              [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+//                              [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+//                              [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+//                              [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+//                              [{ 'direction': 'rtl' }],                         // text direction
+//                              
+//                              [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+//                              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+//                              
+//                              [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+//                              [{ 'font': [] }],
+//                              [{ 'align': [] }],
+//                              
+//                              ['clean']                                         // remove formatting button
+//                              ]
+//        
+//        //set the editor into div and set up theme
+//        
+//        var quill = new Quill('#editor',{
+//                              modules:{
+//                              toolbar: toolbarOptions
+//                              },
+//                              theme:'snow'
+//                              });
+//        
+//        newpostcontent = quill.getText();
+
         
 //        var addnewpost = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Post</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Post</strong></h2></center><p><center><label for="textarea">Title:</label><textarea name="textarea" id="newposttitle" cols="45" rows="1"></textarea><label for="select">Classify:</label><select name="select" required id="newpostclassify"><option selected>Game</option><option>Music</option><option>Picture</option><option>Irrigation</option></select></center></p><p><div class="content"><div class="container-fluid"><div id=' + "'pad-wrapper'" + '><div id="editparent"><div id=' + "'editControls'" + ' class=' + "'span12'" + ' style=' + "'text-align:center; padding:5px;'" + '><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'undo'" + ' href=' + "'#'" + '><i class=' + "'icon-undo'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'redo'" + ' href=' + "'#'" + '><i class=' + "'icon-repeat'" + '></i></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'bold'" + ' href=' + "'#'" + '><b>Bold</b></a><a class=' + "'btn'" + ' data-role=' + "'italic'" + ' href=' + "'#'" + '><em>Italic</em></a><a class=' + "'btn'" + ' data-role=' + "'underline'" + ' href=' + "'#'" + '><u><b>U</b></u></a><a class=' + "'btn'" + ' data-role=' + "'strikeThrough'" + ' href=' + "'#'" + '><strike>abc</strike></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'justifyLeft'" + ' href=' + "'#'" + '><i class=' + "'icon-align-left'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'justifyCenter'" + ' href=' + "'#'" + '><i class=' + "'icon-align-center'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'justifyRight'" + ' href=' + "'#'" + '><i class=' + "'icon-align-right'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'justifyFull'" + ' href=' + "'#'" + '><i class=' + "'icon-align-justify'" + '></i></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'indent'" + ' href='" + '#'" + '><i class=' + "'icon-indent-right'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'outdent'" + ' href=' + "'#'" + '><i class=' + "'icon-indent-left'" + '></i></a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'insertUnorderedList'" + ' href=' + "'#'" + '><i class=' + "'icon-list-ul'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'insertOrderedList'" + ' href=' + "'#'" + '><i class=' + "'icon-list-ol'" + '></i></a></div><div class=' + "btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'h1'" + ' href=' + "'#'" + '>h<sup>1</sup></a><a class=' + "'btn'" + ' data-role=' + "'h2'" + ' href=' + "'#'" + '>h<sup>2</sup></a><a class=' + "'btn'" + ' data-role=' + "'p'" + ' href=' + "'#'" + '>p</a></div><div class=' + "'btn-group'" + '><a class=' + "'btn'" + ' data-role=' + "'subscript'" + ' href=' + "'#'" + '><i class=' + "'icon-subscript'" + '></i></a><a class=' + "'btn'" + ' data-role=' + "'superscript'" + ' href=' + "'#'" + '><i class=' + "'icon-superscript'" + '></i></a></div></div><div id=' + "'editor'" + ' class=' + "'span12'" + ' style=' + "''" + ' contenteditable><h1>This is a title!</h1><p>This is just some example text to start us off</p></div></div></div></div></div></form></ons-page>';
         
@@ -325,7 +357,7 @@ function newpost_submit()
     
     window.localStorage.setItem("currentusername", currentuser);
     
-    var newpost = '[{"newpostauthor":"' + newpostauthor + '","newposttime":"' + newposttime + '","newpostclassify":"' + newpostclassify + '","newposttitle":"' + newposttitle + '","newpostcontent":"' + newpostcontent + '", "postreply":[{"replyuser":"","replycontent":"","replytime":""}]}]';
+    var newpost = '[{"newpostauthor":"' + newpostauthor + '","newposttime":"' + newposttime + '","newpostclassify":"' + newpostclassify + '","newposttitle":"' + newposttitle + '","newpostcontent":"' + encodeURIComponent(newpostcontent) + '", "postreply":[{"replyuser":"","replycontent":"","replytime":""}]}]';
     
     var save_newpost = new XMLHttpRequest();
     save_newpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + newpostauthor + "_" + newposttime + "_" + newpostclassify + "&data=" + newpost), false);
@@ -350,11 +382,14 @@ function newpost_submit()
     
     ons.notification.alert('Post successful!');
     
+    newpostcontent="";
+    
     document.querySelector('#appNavigator').popPage();
     
     location.reload();
     
 }
+
 
 function currenttime()
 {
@@ -888,11 +923,11 @@ function postpage(postauthor, posttime, postclassify)
     
     var displaypost_info = eval('(' + displaypost.responseText + ')');
     
-    var postpage = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">' + displaypost_info[0].newposttitle + '</div></ons-toolbar><ons-card class="post"><ons-list-item class="post_title"><div class="center"><div class="list-item__title"><b>' + postauthor + '</b></div></div></ons-list-item><div style="text-align: center; position: relative">' + displaypost_info[0].newpostcontent + '</div><ons-list-item class="post-button-bar" modifier="nodivider"><div class="center" style="padding-top: 0px"><ons-button class="post-button" modifier="quiet" onclick="like"><ons-icon id="button-post-like" icon="ion-ios-heart-outline"></ons-icon></ons-button><ons-button class="post-button" modifier="quiet"><ons-icon icon="ion-ios-chatbubble-outline" onclick="addnewreply(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')""></ons-icon></ons-button><ons-button class="post-button" modifier="quiet" onclick="deletepost(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')"><ons-icon icon="ion-ios-trash-outline"></ons-icon></ons-button></div></ons-list-item><div class="post-time" style="text-align: right; position: relative;">' + timedifference + '</div></ons-card>';
+    var postpage = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">' + displaypost_info[0].newposttitle + '</div></ons-toolbar><ons-card class="post"><ons-list-item class="post_title"><div class="center"><div class="list-item__title"><b>' + postauthor + '</b></div></div></ons-list-item><div style="text-align: center; position: relative">' + decodeURIComponent(displaypost_info[0].newpostcontent) + '</div><ons-list-item class="post-button-bar" modifier="nodivider"><div class="center" style="padding-top: 0px"><ons-button class="post-button" modifier="quiet" onclick="like"><ons-icon id="button-post-like" icon="ion-ios-heart-outline"></ons-icon></ons-button><ons-button class="post-button" modifier="quiet"><ons-icon icon="ion-ios-chatbubble-outline" onclick="addnewreply(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')""></ons-icon></ons-button><ons-button class="post-button" modifier="quiet" onclick="editpost(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')"><ons-icon icon="ion-ios-compose-outline"></ons-icon></ons-button></div></ons-list-item><div class="post-time" style="text-align: right; position: relative;">' + timedifference + '</div></ons-card>';
     
     for (var i=1; i<displaypost_info[0].postreply.length; i++)
     {
-        postpage = postpage + '<ons-card class="post"><ons-list-item class="post_title"><div class="center"><div class="list-item__title"><b>' + displaypost_info[0].postreply[i].replyuser + '</b></div></div></ons-list-item><div style="text-align: center; position: relative">' + displaypost_info[0].postreply[i].replycontent + '</div><ons-list-item class="post-button-bar" modifier="nodivider"><div class="center" style="padding-top: 0px"></div></ons-list-item><div class="post-time" style="text-align: right; position: relative;">' + displaypost_info[0].postreply[i].replytime + '</div></ons-card>';
+        postpage = postpage + '<ons-card class="post"><ons-list-item class="post_title"><div class="center"><div class="list-item__title"><b>' + displaypost_info[0].postreply[i].replyuser + '</b></div></div></ons-list-item><div style="text-align: center; position: relative">' + decodeURIComponent(displaypost_info[0].postreply[i].replycontent) + '</div><ons-list-item class="post-button-bar" modifier="nodivider"><div class="center" style="padding-top: 0px"></div></ons-list-item><div class="post-time" style="text-align: right; position: relative;">' + displaypost_info[0].postreply[i].replytime + '</div></ons-card>';
     }
     
     postpage = postpage + '</ons-page>';
@@ -992,7 +1027,7 @@ function addnewreply(postauthor, posttime, postclassify)
     }
     else
     {
-        var addnewreply = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Reply</div></ons-toolbar><form name="form1" method="post" action=""><center><h2><strong>New Reply</strong></h2></center><p><center><label for="textarea">Content:</label><textarea name="textarea" id="newreplycontent" cols="45" rows="5"></textarea></center></p><p style="margin-top: 30px;"><center><ons-button onclick="newreply_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newreply_submit(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')")">Submit</ons-button></center></p></form></ons-page>';
+        var addnewreply = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">New Reply</div></ons-toolbar><center><h2><strong>New Reply</strong></h2></center><p><label for="textarea">Content:</label><textarea name="textarea" id="newreplycontent"></textarea></p><p style="margin-top: 30px;"><center><ons-button onclick="newreply_reset()">Reset</ons-button>&nbsp;&nbsp;&nbsp;<ons-button onclick="newreply_submit(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')")">Submit</ons-button></center></p></ons-page>';
         
         document.getElementById('addnewreply.html').innerHTML = addnewreply;
         document.querySelector('#appNavigator').pushPage('addnewreply.html');
@@ -1020,14 +1055,14 @@ function newreply_submit(postauthor, posttime, postclassify)
         var allreplycontent = displaypost_info[0].postreply[i].replycontent;
         var allreplytime = displaypost_info[0].postreply[i].replytime;
         
-        postallreply += '{"replyuser":"' + allreplyuser + '","replycontent":"' + allreplycontent + '","replytime":"' + allreplytime + '"},';
+        postallreply = postallreply + '{"replyuser":"' + allreplyuser + '","replycontent":"' + encodeURIComponent(allreplycontent) + '","replytime":"' + allreplytime + '"},';
     }
     
     var newreplyuser = currentuser;
     var newreplycontent = document.getElementById('newreplycontent').value;
     var newreplytime = new Date();
     
-    postallreply = postallreply + '{"replyuser":"' + newreplyuser + '","replycontent":"' + newreplycontent + '","replytime":"' + newreplytime + '"}';
+    postallreply = postallreply + '{"replyuser":"' + newreplyuser + '","replycontent":"' + encodeURIComponent(newreplycontent) + '","replytime":"' + newreplytime + '"}';
     
     var postdetails = '[{"newpostauthor":"' + displaypost_info[0].newpostauthor + '","newposttime":"' + displaypost_info[0].newposttime + '","newpostclassify":"' + displaypost_info[0].newpostclassify + '","newposttitle":"' + displaypost_info[0].newposttitle + '","newpostcontent":"' + displaypost_info[0].newpostcontent + '", "postreply":[' + postallreply + ']}]';
     
@@ -1038,26 +1073,121 @@ function newreply_submit(postauthor, posttime, postclassify)
     ons.notification.alert('Reply successful!');
     
     document.querySelector('#appNavigator').popPage();
+    
+    window.location.reload();
 }
 
-function deletepost(postauthor, posttime, postclassify)
+function editpost(postauthor, posttime, postclassify)
 {
-//    if (currentuser == postauthor)
-//    {
-//        var deletepost = new XMLHttpRequest();
-//        displaypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=delete&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
-//        displaypost.send(null);
-//        
-//        if (deletepost.responseText != "ok")
-//        {
-//            ons.notification.alert('Delete successful!');
-//            
-//            document.querySelector('#appNavigator').popPage();
-//        }
-//    }
-//    else
-//    {
-//        ons.notification.alert('You do not have permission to delete this post');
-//    }
+    if (currentuser == "")
+    {
+        ons.notification.alert('Please log in first');
+    }
+    else
+    {
+        var displaypost = new XMLHttpRequest();
+        displaypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+        displaypost.send(null);
+        
+        var displaypost_info = eval('(' + displaypost.responseText + ')');
+        
+        var editpost = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">Edit Post</div></ons-toolbar><p><label for="textarea">Content:</label><textarea name="textarea" id="editpostcontent">' + decodeURIComponent(displaypost_info[0].newpostcontent) + '</textarea></p><p style="margin-top: 30px;"><center><ons-button onclick="editpost_submit(' + "'" + postauthor + "'" + ',' + "'" + posttime + "'" + ',' + "'" + postclassify + "'" + ')")">Submit</ons-button></center></p></ons-page>';
+        
+        document.getElementById('editpost.html').innerHTML = editpost;
+        document.querySelector('#appNavigator').pushPage('editpost.html');
+    }
+}
+
+function editpost_submit(postauthor, posttime, postclassify)
+{
+    var displaypost = new XMLHttpRequest();
+    displaypost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify), false);
+    displaypost.send(null);
     
+    var displaypost_info = eval('(' + displaypost.responseText + ')');
+    
+    var editpostuser = displaypost_info[0].newpostauthor;
+    var editposttime = displaypost_info[0].newposttime;
+    var editpostclassify = displaypost_info[0].newpostclassify;
+    var editposttitle = displaypost_info[0].newposttitle;
+    var editpostcontent = document.getElementById('editpostcontent').value;
+    
+    var postallreply = "";
+    
+    for (var i=0; i<displaypost_info[0].postreply.length; i++)
+    {
+        var allreplyuser = displaypost_info[0].postreply[i].replyuser;
+        var allreplycontent = displaypost_info[0].postreply[i].replycontent;
+        var allreplytime = displaypost_info[0].postreply[i].replytime;
+        if (i<displaypost_info[0].postreply.length -1)
+        {
+        postallreply = postallreply + '{"replyuser":"' + allreplyuser + '","replycontent":"' + encodeURIComponent(allreplycontent) + '","replytime":"' + allreplytime + '"},';
+        }
+        else
+        {
+            postallreply = postallreply + '{"replyuser":"' + allreplyuser + '","replycontent":"' + encodeURIComponent(allreplycontent) + '","replytime":"' + allreplytime + '"}';
+        }
+    }
+    
+    var postdetails = '[{"newpostauthor":"' + displaypost_info[0].newpostauthor + '","newposttime":"' + displaypost_info[0].newposttime + '","newpostclassify":"' + displaypost_info[0].newpostclassify + '","newposttitle":"' + displaypost_info[0].newposttitle + '","newpostcontent":"' + editpostcontent + '", "postreply":[' + postallreply + ']}]';
+    
+    var save_editpost = new XMLHttpRequest();
+    save_editpost.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + postauthor + "_" + posttime + "_" + postclassify + "&data=" + postdetails), false);
+    save_editpost.send(null);
+    
+    window.location.reload();
+}
+
+function changeperinfo()
+{
+    var changeperinfo = '<ons-page><ons-toolbar><div class="left"><ons-back-button>Back</ons-back-button></div><div class="center">Profile</div></ons-toolbar><div style="text-align: center; margin-top: 30px;"><p><ons-input id="change_oldpassword" modifier="underbar" type="password" placeholder="Old Password" float></ons-input></p><p><ons-input id="change_newpassword" modifier="underbar" type="password" placeholder="New Password" float></ons-input></p><p style="margin-top: 30px;"><center><ons-button onclick="changepsd()">Submit</ons-button></center></p></div></ons-page>';
+    
+    document.getElementById('changeperinfo.html').innerHTML = changeperinfo;
+    document.querySelector('#appNavigator').pushPage('changeperinfo.html');
+}
+
+function changepsd()
+{
+    var change_oldpassword = document.getElementById('change_oldpassword').value;
+    var change_newpassword = document.getElementById('change_newpassword').value;
+    
+    var getuserpsd = new XMLHttpRequest();
+    getuserpsd.open("get", encodeURI("http://introtoapps.com/datastore.php?action=load&appid=216036238&objectid=" + currentuser), false);
+    getuserpsd.send(null);
+    
+    var getuserpsd_info = eval('(' + getuserpsd.responseText + ')');
+    
+    if (change_oldpassword == "")
+    {
+        ons.notification.alert('Please input the old password!');
+    }
+    else
+    {
+        if (change_newpassword == "")
+        {
+            ons.notification.alert('Please input the new password!');
+        }
+        else
+        {
+            if (sha256_digest(change_oldpassword) == getuserpsd_info[0].password)
+            {
+                var newuserinfo = '[{"username":"'+ currentuser +'","password":"' + sha256_digest(change_newpassword) + '"}]';
+                
+                var sendnewpsd = new XMLHttpRequest();
+                sendnewpsd.open("get", encodeURI("http://introtoapps.com/datastore.php?action=save&appid=216036238&objectid=" + currentuser + "&data=" + newuserinfo), false);
+                sendnewpsd.send(null);
+                
+                ons.notification.alert('Password reset successful!');
+                currentuser = "";
+                window.localStorage.setItem("currentusername", "");
+                window.location.reload();
+            }
+            else
+            {
+                ons.notification.alert('Wrong old password!');
+                document.getElementById("change_oldpassword").value="";
+                document.getElementById("change_newpassword").value="";
+            }
+        }
+    }
 }
